@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Niclas\\RiderProjects\\CarAuction\\CarAuction.csproj": {}
+    "C:\\Users\\Niclas\\Repositories\\H2project\\H2PD040124\\CarAuction\\CarAuction.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Niclas\\RiderProjects\\CarAuction\\CarAuction.csproj": {
+    "C:\\Users\\Niclas\\Repositories\\H2project\\H2PD040124\\CarAuction\\CarAuction.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Niclas\\RiderProjects\\CarAuction\\CarAuction.csproj",
+        "projectUniqueName": "C:\\Users\\Niclas\\Repositories\\H2project\\H2PD040124\\CarAuction\\CarAuction.csproj",
         "projectName": "CarAuction",
-        "projectPath": "C:\\Users\\Niclas\\RiderProjects\\CarAuction\\CarAuction.csproj",
+        "projectPath": "C:\\Users\\Niclas\\Repositories\\H2project\\H2PD040124\\CarAuction\\CarAuction.csproj",
         "packagesPath": "C:\\Users\\Niclas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Niclas\\RiderProjects\\CarAuction\\obj\\",
+        "outputPath": "C:\\Users\\Niclas\\Repositories\\H2project\\H2PD040124\\CarAuction\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Niclas\\AppData\\Roaming\\NuGet\\NuGet.Config",

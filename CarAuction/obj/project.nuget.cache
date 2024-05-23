@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Zwdo07ENatqYFqwp41YRuJmEpzBMDUaPq8NaNWZ41fB4J6HU2ZJYh0Vi1WfxbC1XaP9CR3XkAcVf2rA/wx3R9w==",
+  "dgSpecHash": "I6BIcMQ4IFcn5T+MYjKHN1qDE4Z4DBDEN0hEkHfXmjMA+BZLOndjozQ+eaVUwJGcQuRQ0OfmxiaK5nlQq7bTJQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Niclas\\RiderProjects\\CarAuction\\CarAuction.csproj",
+  "projectFilePath": "C:\\Users\\Niclas\\Repositories\\H2project\\H2PD040124\\CarAuction\\CarAuction.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Niclas\\.nuget\\packages\\avalonia\\0.10.18\\avalonia.0.10.18.nupkg.sha512",
     "C:\\Users\\Niclas\\.nuget\\packages\\avalonia.angle.windows.natives\\2.1.0.2020091801\\avalonia.angle.windows.natives.2.1.0.2020091801.nupkg.sha512",
