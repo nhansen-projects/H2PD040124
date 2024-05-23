@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 
-namespace CarAuction;
+namespace CarAuction.Views;
 
 public partial class MainWindow : Window
 {
