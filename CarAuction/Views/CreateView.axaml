@@ -1,0 +1,60 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 x:CompileBindings="False"
+             x:Class="CarAuction.Views.CreateView">
+
+
+
+	<Grid ShowGridLines="false" Background="#333333">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"></RowDefinition>
+			<RowDefinition Height="*"></RowDefinition>
+			<RowDefinition Height="*"></RowDefinition>
+			<RowDefinition Height="*"></RowDefinition>
+			<RowDefinition Height="*"></RowDefinition>
+			<RowDefinition Height="*"></RowDefinition>
+			<RowDefinition Height="*"></RowDefinition>
+			<RowDefinition Height="*"></RowDefinition>
+		</Grid.RowDefinitions>
+
+
+		<!-- CREATE USER PAGE TITLE -->
+		<TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="24">CREATE USER</TextBlock>
+
+		<!-- LABELS FOR USER INFORMATION -->
+		
+		<TextBlock Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White">Username:</TextBlock>
+		<TextBlock Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White">Password:</TextBlock>
+		<TextBlock Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White">Password Again:</TextBlock>
+		
+
+		<!-- TEXTBOXES FOR USER INPUT -->
+		<TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding UserNameInput}"></TextBox>
+		<TextBox PasswordChar="*" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding PasswordInput}"></TextBox>
+		<TextBox PasswordChar="*" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding PasswordAgainInput}"></TextBox>
+
+
+		<!-- CREATE USER BUTTON -->
+		<Button Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="1"  HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="Gray" Command="{Binding CreateUser}" Foreground="White">Create User</Button>
+		<TextBlock Grid.Row="7" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="10" Foreground="Gray" Text="{Binding Error}"></TextBlock>
+
+		<!-- CREATE USER BUTTON -->
+		<Button Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="1"  HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="Gray" Command="{Binding Cancel}" Foreground="White">Cancel</Button>
+
+		<!--Password Error-->
+		<TextBlock Grid.Row="7" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="10" Foreground="Gray" Text="{Binding Error}" ></TextBlock>
+
+		<CheckBox Grid.Row="1" Grid.Column="2" Command="{Binding CorporateLogin}" >Corporate</CheckBox>
+		<CheckBox Grid.Row="1" Grid.Column="1" Command="{Binding PrivateLogin}">Private</CheckBox>
+
+
+	</Grid>
+</UserControl>
