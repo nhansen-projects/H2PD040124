@@ -1,6 +1,30 @@
-﻿namespace CarAuction.ViewModels;
+﻿using ReactiveUI;
+using System.ComponentModel;
 
-public class MainWindowViewModel : ViewModelBase
+namespace CarAuction.ViewModels
 {
-    public string Greeting => "Welcome to Avalonia!";
+    public class MainWindowViewModel : ViewModelBase, INotifyPropertyChanged
+    {
+
+        private ViewModelBase _contentViewModel;
+
+
+
+        public ViewModelBase ContentViewModel
+        {
+            get => _contentViewModel;
+            private set => this.RaiseAndSetIfChanged(ref _contentViewModel, value);
+        }
+
+        public void SetViewModel(ViewModelBase model)
+        {
+            ContentViewModel = model;
+        }
+
+
+        public MainWindowViewModel()
+        {
+            _contentViewModel = new LoginViewModel(this);
+        }
+    }
 }
