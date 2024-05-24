@@ -1,11 +1,12 @@
 using Avalonia.Controls;
 
-namespace CarAuction.Views;
-
-public partial class MainWindow : Window
+namespace CarAuction.Views
 {
-    public MainWindow()
+    public partial class MainWindow : Window
     {
-        InitializeComponent();
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
     }
 }

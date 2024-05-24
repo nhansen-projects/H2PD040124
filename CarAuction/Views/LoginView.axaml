@@ -1,0 +1,55 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 x:CompileBindings="False"
+             x:Class="CarAuction.Views.LoginView">
+
+	<Grid ShowGridLines="False"  Background="#333333">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"></RowDefinition>
+			<RowDefinition Height="*"></RowDefinition>
+			<RowDefinition Height="*"></RowDefinition>
+			<RowDefinition Height="*"></RowDefinition>
+			<RowDefinition Height="*"></RowDefinition>
+			<RowDefinition Height="*"></RowDefinition>
+			<RowDefinition Height="*"></RowDefinition>
+			<RowDefinition Height="*"></RowDefinition>
+		</Grid.RowDefinitions>
+
+
+		<!--LOGIN PAGE TITLE-->
+		<TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="24">LOGIN PAGE</TextBlock>
+
+
+		<!--TEXTBOX TEXT-->
+		<TextBlock Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White" >Username:</TextBlock>
+		<TextBlock Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right"  VerticalAlignment="Center" Foreground="White">Pasword: </TextBlock>
+
+		<!--TEXTBOX-->
+		<TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding UserNameInput}"></TextBox>
+		<TextBox PasswordChar="*" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding PasswordInput}"></TextBox>
+
+		<!--BUTTON-->
+		<Button Grid.Row="4" Grid.Column="1" Command="{Binding HomePage}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Background="Gray" Foreground="White">Login</Button>
+		<Button Grid.Row="5" Grid.Column="1" Command="{Binding CreateUser}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Background="Gray" Foreground="White">Create User</Button>
+
+
+		<TextBlock Grid.Row="4"
+		   Grid.Column="1"
+		   HorizontalAlignment="Center"
+		   VerticalAlignment="Top"
+		   FontSize="10"
+		   Foreground="Gray"
+		   Text="{Binding Error}"
+		></TextBlock>
+		
+		
+	</Grid>	
+</UserControl>
