@@ -28,7 +28,7 @@ namespace CarAuction.ViewModels
 
         public void SetForSale()
         {
-            //main.SetViewModel(new SetForSaleViewModel(main));
+            main.SetViewModel(new SetForSaleViewModel(main));
         }
 
         public void MyProfile()
@@ -40,5 +40,6 @@ namespace CarAuction.ViewModels
         {
             //main.SetViewmodel(new BidHistoryViewModel(main))
         }
+
     }
 }

@@ -12,6 +12,7 @@
 			<ColumnDefinition></ColumnDefinition>
 			<ColumnDefinition></ColumnDefinition>
 			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
 		</Grid.ColumnDefinitions>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="*"></RowDefinition>
@@ -34,6 +35,12 @@
 		<TextBlock Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="14">Year:</TextBlock>
 		<TextBlock Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="14">Starting Bid:</TextBlock>
 		<TextBlock Grid.Row="6" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="14">Close Auction:</TextBlock>
+		<TextBlock Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="14">Vehicle Type:</TextBlock>
+		<TextBlock Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="14">Height:</TextBlock>
+		<TextBlock Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="14">Length:</TextBlock>
+		<TextBlock Grid.Row="4" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="14">Weight:</TextBlock>
+		<TextBlock Grid.Row="5" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="14">Engine Size:</TextBlock>
+		<TextBlock Grid.Row="6" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="14">Tow bar:</TextBlock>
 
 
 		<!--TEXTBOX for Name, Milage, Regnr & Starting Bid-->
@@ -41,12 +48,31 @@
 		<TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding SaleMilage}"></TextBox>
 		<TextBox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding SaleRegnr}"></TextBox>
 		<TextBox Grid.Row="5" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding SaleStarting}"></TextBox>
+		<TextBox Grid.Row="2" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding SaleHeight}"></TextBox>
+		<TextBox Grid.Row="3" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding SaleLength}"></TextBox>
+		<TextBox Grid.Row="4" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding SaleWeight}"></TextBox>
+		<TextBox Grid.Row="5" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding SaleEngineSize}"></TextBox>
+
 
 
 		<!--Year-->
-		<ComboBox Grid.Column="1" Grid.Row="4">
-			<ComboBoxItem DataContext="{Binding}"></ComboBoxItem>
-		</ComboBox>
+		<DatePicker Grid.Column="1" Grid.Row="4" DayVisible="False" MonthVisible="False" YearVisible="True"></DatePicker>
+
+		<!--Close Auction-->
+		<DatePicker Grid.Column="1" Grid.Row="6"></DatePicker>
+
+		<!--Cancel Btn-->
+		<Button Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="1" Command="{Binding CancelBtn}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="Gray" Foreground="White" Content="Cancel" />
+
+		<!--Vehicle type-->
+		<ComboBox Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="1"  HorizontalAlignment="Stretch" VerticalAlignment="Center"></ComboBox>
+				
+		<!--Tow bar-->
+		<RadioButton Grid.Column="3" Grid.Row="6" HorizontalAlignment="Left" Content="Yes" Foreground="White"></RadioButton>
+		<RadioButton Grid.Column="3" Grid.Row="6" HorizontalAlignment="Right" Content="No"  Foreground="White"></RadioButton>
+
+		<!--Create Auction Btn-->
+		<Button Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="1" Command="{Binding CreateAuctionBtn}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="Gray" Foreground="White" Content="Cancel" />
 
 	</Grid>
 </UserControl>
