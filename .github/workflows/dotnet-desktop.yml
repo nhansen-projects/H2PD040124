@@ -91,7 +91,7 @@ jobs:
 
     # Execute all unit tests in the solution
     - name: Execute unit tests
-      run: dotnet test $env:Test_Project_Path --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
+      run: dotnet test $env:Test_Project_Path --logger trx --results-directory "${{ env.Wap_Project_Directory }}\AppPackages\TestResults-${{ matrix.dotnet-version }}"
 
     - name: Upload dotnet test results
       uses: actions/upload-artifact@v3
