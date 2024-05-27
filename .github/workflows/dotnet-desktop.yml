@@ -57,6 +57,7 @@ jobs:
 
     env:
       Solution_Name: CarAuction.sln                         # Replace with your solution name, i.e. MyWpfApp.sln.
+      Solution_Path: CarAuction\CarAuction.sln
       Test_Project_Path: AuctionTest\AuctionTest.csproj                  # Replace with the path to your test project, i.e. MyWpfApp.Tests\MyWpfApp.Tests.csproj.
       Wap_Project_Directory: CarAuction     # Replace with the Wap project directory relative to the solution, i.e. MyWpfApp.Package.
       Wap_Project_Path: CarAuction\CarAuction.csproj                   # Replace with the path to your Wap project, i.e. MyWpf.App.Package\MyWpfApp.Package.wapproj.
@@ -76,6 +77,11 @@ jobs:
     # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
     - name: Setup MSBuild.exe
       uses: microsoft/setup-msbuild@v2
+
+    - name: Build solution
+      run: dotnet build $env:Solution_Path --configuration $env:Configuration
+      env:
+        Configuration: ${{ matrix.configuration }}
 
     # Execute all unit tests in the solution
     - name: Execute unit tests
