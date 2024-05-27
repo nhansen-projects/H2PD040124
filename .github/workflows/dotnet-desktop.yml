@@ -51,7 +51,6 @@ jobs:
     strategy:
       matrix:
         configuration: [Debug, Release]
-        dotnet-version: [ '3.1.x', '6.0.x' ]
 
     runs-on: windows-latest  # For a list of available runner types, refer to
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
@@ -91,15 +90,28 @@ jobs:
 
     # Execute all unit tests in the solution
     - name: Execute unit tests
-      run: dotnet test $env:Test_Project_Path --logger trx --results-directory "${{ env.Wap_Project_Directory }}\AppPackages\TestResults-${{ matrix.dotnet-version }}"
+      run: dotnet test $env:Test_Project_Path --no-build --verbosity normal --collect:"XPlat Code Coverage" --logger trx --results-directory "${{ env.Wap_Project_Directory }}\AppPackages\TestResults"
 
     - name: Upload dotnet test results
       uses: actions/upload-artifact@v3
       with:
-        name: dotnet-results-${{ matrix.dotnet-version }}
-        path: ${{ env.Wap_Project_Directory }}\AppPackages\TestResults-${{ matrix.dotnet-version }}
+        name: dotnet-results
+        path: ${{ env.Wap_Project_Directory }}\AppPackages\TestResults
       # Use always() to always run this step to publish test results when there are test failures
       if: ${{ always() }}
+
+    - name: Code Coverage Report
+      uses: irongut/CodeCoverageSummary@v1.3.0
+      with:
+        filename: ${{ env.Wap_Project_Directory }}\AppPackages\TestResults/**/coverage.cobertura.xml
+        badge: true
+        fail_below_min: true
+        format: markdown
+        hide_branch_rate: false
+        hide_complexity: true
+        indicators: true
+        output: both
+        thresholds: '60 80'  
 
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Restore the application
@@ -133,3 +145,10 @@ jobs:
       with:
         name: MSIX Package
         path: ${{ env.Wap_Project_Directory }}\AppPackages
+
+    - name: Add Coverage PR Comment
+      uses: marocchino/sticky-pull-request-comment@v2
+      if: github.event_name == 'pull_request'
+      with:
+        recreate: true
+        path: code-coverage-results.md
