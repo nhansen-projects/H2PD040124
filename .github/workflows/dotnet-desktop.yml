@@ -47,7 +47,7 @@ jobs:
       run: dotnet restore ./CarAuction/CarAuction.sln
 
     - name: Build solution
-      run: dotnet build ./CarAuction/CarAuction.sln --configuration $env:Configuration
+      run: dotnet build ./CarAuction/CarAuction.sln --configuration $Configuration
       env:
         Configuration: ${{ matrix.configuration }}
 
