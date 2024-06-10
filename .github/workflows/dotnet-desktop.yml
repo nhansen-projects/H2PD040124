@@ -14,15 +14,14 @@ jobs:
       matrix:
         configuration: [Debug, Release]
 
-    runs-on: ubuntu-latest  # For a list of available runner types, refer to
-                             # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
+    runs-on: ubuntu-latest
 
     env:
-      Solution_Name: CarAuction.sln                         # Replace with your solution name, i.e. MyWpfApp.sln.
+      Solution_Name: CarAuction.sln
       Solution_Path: ./CarAuction/CarAuction.sln
-      Test_Project_Path: ./AuctionTest/AuctionTest.csproj                  # Replace with the path to your test project, i.e. MyWpfApp.Tests\MyWpfApp.Tests.csproj.
-      Wap_Project_Directory: ./CarAuction     # Replace with the Wap project directory relative to the solution, i.e. MyWpfApp.Package.
-      Wap_Project_Path: ./CarAuction/CarAuction.csproj                   # Replace with the path to your Wap project, i.e. MyWpf.App.Package\MyWpfApp.Package.wapproj.
+      Test_Project_Path: ./AuctionTest/AuctionTest.csproj
+      Wap_Project_Directory: ./CarAuction
+      Wap_Project_Path: ./CarAuction/CarAuction.csproj
 
     steps:
     - name: Checkout
@@ -53,12 +52,6 @@ jobs:
     # Execute all unit tests in the solution
     - name: Execute unit tests
       run: dotnet test $Solution_Path --no-build --verbosity normal --collect:"XPlat Code Coverage" --logger trx --results-directory "${{ env.Wap_Project_Directory}}/AppPackages/TestResults"
-
-    - name: Install Tree
-      run: sudo apt-get install tree
-      
-    - name: Display Directories
-      run: tree
 
     - name: Upload dotnet test results
       uses: actions/upload-artifact@v3
