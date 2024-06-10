@@ -45,14 +45,14 @@ jobs:
       env:
         Configuration: ${{ matrix.configuration }}
 
-    #- name: Build tests
-    #  run: dotnet build $Test_Project_Path --configuration $Configuration
-    #  env:
-    #    Configuration: ${{ matrix.configuration }}
+    - name: Build tests
+      run: dotnet build $Test_Project_Path --configuration $Configuration
+      env:
+        Configuration: ${{ matrix.configuration }}
 
     # Execute all unit tests in the solution
     - name: Execute unit tests
-      run: dotnet test $Wap_Project_Path --no-build --verbosity normal --collect:"XPlat Code Coverage" --logger trx --results-directory "${{ env.Wap_Project_Directory}}/AppPackages/TestResults"
+      run: dotnet test $Solution_Path --no-build --verbosity normal --collect:"XPlat Code Coverage" --logger trx --results-directory "${{ env.Wap_Project_Directory}}/AppPackages/TestResults"
 
     - name: Install Tree
       run: sudo apt-get install tree
