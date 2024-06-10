@@ -36,12 +36,6 @@ jobs:
       with:
         dotnet-version: 8.0.x
 
-    - name: Install Tree
-      run: sudo apt-get install tree
-      
-    - name: Display Directories
-      run: tree
-
     # Install Dependencies
     - name: Restore the application
       run: dotnet restore $Solution_Path
@@ -59,6 +53,12 @@ jobs:
     # Execute all unit tests in the solution
     - name: Execute unit tests
       run: dotnet test $Wap_Project_Path --no-build --verbosity normal --collect:"XPlat Code Coverage" --logger trx --results-directory "${{ env.Wap_Project_Directory }}\AppPackages\TestResults"
+
+    - name: Install Tree
+      run: sudo apt-get install tree
+      
+    - name: Display Directories
+      run: tree
 
     - name: Upload dotnet test results
       uses: actions/upload-artifact@v3
