@@ -44,7 +44,7 @@ jobs:
 
     # Install Dependencies
     - name: Restore the application
-      run: dotnet restore CarAuction\CarAuction.sln
+      run: dotnet restore ./CarAuction/CarAuction.sln
 
     - name: Build solution
       run: dotnet build $env:Solution_Path --configuration $env:Configuration
