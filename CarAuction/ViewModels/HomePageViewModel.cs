@@ -39,7 +39,7 @@ namespace CarAuction.ViewModels
         public void BidHistory()
         {
             //main.SetViewmodel(new BidHistoryViewModel(main))
-        }
-
+        } 
+        
     }
 }
