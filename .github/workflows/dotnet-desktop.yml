@@ -36,6 +36,12 @@ jobs:
       with:
         dotnet-version: 8.0.x
 
+    - name: Install Tree
+      run: sudo apt-get install tree
+      
+    - name: Display Directories
+      run: tree
+
     # Install Dependencies
     - name: Restore the application
       run: dotnet restore
