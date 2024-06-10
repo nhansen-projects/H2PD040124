@@ -44,7 +44,7 @@ jobs:
 
     # Install Dependencies
     - name: Restore the application
-      run: dotnet restore $env:Solution_Path --configuration $env:Configuration
+      run: dotnet restore $env:Solution_Path
       env:
         Configuration: ${{ matrix.configuration }}
 
