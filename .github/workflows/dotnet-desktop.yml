@@ -35,17 +35,20 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-        
+
+    # Install Dependencies
+    - name: Restore the application
+      run: dotnet restore
+
     - name: Build solution
-      run: dotnet build --configuration $env:Configuration
-      #run: dotnet build $env:Solution_Path --configuration $env:Configuration
+      run: dotnet build $env:Solution_Path --configuration $env:Configuration
       env:
         Configuration: ${{ matrix.configuration }}
 
-    - name: Build tests
-      run: dotnet build $env:Test_Project_Path --configuration $env:Configuration
-      env:
-        Configuration: ${{ matrix.configuration }}
+    #- name: Build tests
+    #  run: dotnet build $env:Test_Project_Path --configuration $env:Configuration
+    #  env:
+    #    Configuration: ${{ matrix.configuration }}
 
     # Execute all unit tests in the solution
     - name: Execute unit tests
@@ -71,12 +74,6 @@ jobs:
         indicators: true
         output: both
         thresholds: '60 80'  
-
-    # Restore the application to populate the obj folder with RuntimeIdentifiers
-    - name: Restore the application
-      run: msbuild $env:Wap_Project_Directory /t:Restore /p:Configuration=$env:Configuration
-      env:
-        Configuration: ${{ matrix.configuration }}
 
     # Upload the MSIX package: https://github.com/marketplace/actions/upload-a-build-artifact
     - name: Upload build artifacts
