@@ -1,0 +1,91 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 x:CompileBindings="False"
+             x:Class="CarAuction.Views.HomePageView">
+
+	
+	<Grid ShowGridLines="false" Background="#333333">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"></RowDefinition>
+			<RowDefinition Height="*"></RowDefinition>
+			<RowDefinition Height="*"></RowDefinition>
+			<RowDefinition Height="*"></RowDefinition>
+			<RowDefinition Height="*"></RowDefinition>
+			<RowDefinition Height="*"></RowDefinition>
+			<RowDefinition Height="*"></RowDefinition>
+			<RowDefinition Height="*"></RowDefinition>
+		</Grid.RowDefinitions>
+
+
+		<TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="24">HomePage</TextBlock>
+
+		<!-- Logout Button -->
+		<Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="1" Command="{Binding LoginView}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="Gray" Foreground="White" Content="Logout" />
+
+		<!-- SetForSale Button -->
+		<Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" Command="{Binding SetForSale}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="Gray" Foreground="White" Content="Set For Sale" />
+
+		<!-- MyProfile Button -->
+		<Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="1" Command="{Binding MyProfile}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="Gray" Foreground="White" Content="My Profile" />
+
+		<!-- BidHistory Button -->
+		<Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" Command="{Binding BidHistory}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="Gray" Foreground="White" Content="Bid History" />
+
+
+
+
+		<TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="24">Your Auctions</TextBlock>
+
+
+		<TextBlock Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="24">Current Auctions</TextBlock>
+
+
+
+		<ListBox Grid.Row="1"
+				 Grid.Column="1"
+				 Grid.ColumnSpan="3"
+				 Grid.RowSpan="3"
+				 Margin="20"
+				 x:Name="YourAuctions"
+				 SelectedItem="{Binding}">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<StackPanel>
+						<TextBlock Text="{Binding}"
+								   FontWeight="Bold"/>
+					</StackPanel>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+
+
+		<ListBox Grid.Row="5"
+				 Grid.Column="1"
+				 Grid.ColumnSpan="3"
+				 Grid.RowSpan="3"
+				 Margin="20"
+				 x:Name="CurrentAuctions"
+				 SelectedItem="{Binding}">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<StackPanel>
+						<TextBlock Text="{Binding}"
+								   FontWeight="Bold"/>
+					</StackPanel>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+
+
+	</Grid>
+	
+</UserControl>

@@ -1,7 +1,8 @@
 ﻿using ReactiveUI;
 
-namespace CarAuction.ViewModels;
-
-public class ViewModelBase : ReactiveObject
+namespace CarAuction.ViewModels
 {
+    public class ViewModelBase : ReactiveObject
+    {
+    }
 }

@@ -1,0 +1,89 @@
+name: .NET Core Desktop
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+
+    runs-on: ubuntu-latest
+
+    env:
+      Solution_Name: CarAuction.sln
+      Solution_Path: ./CarAuction/CarAuction.sln
+      Test_Project_Path: ./AuctionTest/AuctionTest.csproj
+      Wap_Project_Directory: ./CarAuction
+      Wap_Project_Path: ./CarAuction/CarAuction.csproj
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    # Install the .NET Core workload
+    - name: Install .NET Core
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+
+    # Install Dependencies
+    - name: Restore the application
+      run: dotnet restore $Solution_Path
+
+    - name: Build solution
+      run: dotnet build $Solution_Path --configuration $Configuration --no-restore
+      env:
+        Configuration: ${{ matrix.configuration }}
+
+    - name: Build tests
+      run: dotnet build $Test_Project_Path --configuration $Configuration
+      env:
+        Configuration: ${{ matrix.configuration }}
+
+    # Execute all unit tests in the solution
+    - name: Execute unit tests
+      run: dotnet test $Solution_Path --no-build --verbosity normal --collect:"XPlat Code Coverage" --logger trx --results-directory "${{ env.Wap_Project_Directory}}/AppPackages/TestResults"
+
+    - name: Upload dotnet test results
+      uses: actions/upload-artifact@v3
+      with:
+        name: dotnet-results
+        path: ${{ env.Wap_Project_Directory}}/AppPackages/TestResults
+      # Use always() to always run this step to publish test results when there are test failures
+      if: ${{ always() }}
+
+    - name: Code Coverage Report
+      uses: irongut/CodeCoverageSummary@v1.3.0
+      with:
+        filename: ${{ env.Wap_Project_Directory}}/AppPackages/TestResults/**/coverage.cobertura.xml
+        badge: true
+        fail_below_min: true
+        format: markdown
+        hide_branch_rate: false
+        hide_complexity: true
+        indicators: true
+        output: both
+        thresholds: '60 80'  
+
+    # Upload the MSIX package: https://github.com/marketplace/actions/upload-a-build-artifact
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: MSIX Package
+        path: ${{ env.Wap_Project_Directory}}/AppPackages
+
+    - name: Add Coverage PR Comment
+      uses: marocchino/sticky-pull-request-comment@v2
+      if: github.event_name == 'pull_request'
+      with:
+        recreate: true
+        path: code-coverage-results.md
