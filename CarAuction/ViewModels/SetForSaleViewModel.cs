@@ -105,7 +105,13 @@ namespace CarAuction.ViewModels
 
         public void CreateAuctionBtn()
         {
-            //Til at gemme dataerne fra dit salg
+            //All missing are in dummy strings
+            string Year = "MISSING";
+            string CloseAuction = "MISSING";
+            string VehicleType = "MISSING";
+            string TowBar = "MISSING";
+
+            List<string> CreateSaleList = new List<string> { SaleName, SaleMilage, SaleRegnr, Year, SaleStarting, CloseAuction, VehicleType, SaleHeight, SaleLength, SaleWeight, SaleEngineSize, TowBar};
         }
 
 
