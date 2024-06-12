@@ -33,12 +33,12 @@ namespace CarAuction.ViewModels
 
         public void MyProfile()
         {
-            //main.SetViewModel(new MyProfileViewModel(main));
+            main.SetViewModel(new MyProfileViewModel(main));
         }
 
         public void BidHistory()
         {
-            //main.SetViewmodel(new BidHistoryViewModel(main))
+            main.SetViewModel(new BidHistoryViewModel(main));
         } 
         
     }
