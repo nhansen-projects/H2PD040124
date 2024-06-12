@@ -103,17 +103,13 @@ namespace CarAuction.ViewModels
         }
 
 
-        private string _CreateAuctionBtn;
-        public string CreateAuctionBtn
+        public void CreateAuctionBtn()
         {
-            get => _CreateAuctionBtn;
-            set
-            {
-                this.RaiseAndSetIfChanged(ref _CreateAuctionBtn, value, nameof(CreateAuctionBtn));
-            }
+            //Til at gemme dataerne fra dit salg
         }
 
-        
+
+
 
         public void CancelBtn()
         {

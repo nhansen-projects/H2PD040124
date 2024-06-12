@@ -72,7 +72,7 @@
 		<RadioButton Grid.Column="3" Grid.Row="6" HorizontalAlignment="Right" Content="No"  Foreground="White"></RadioButton>
 
 		<!--Create Auction Btn-->
-		<Button Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="1" Command="{Binding CreateAuctionBtn}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="Gray" Foreground="White" Content="Cancel" />
+		<Button Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="1" Command="{Binding CreateAuctionBtn}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="Gray" Foreground="White" Content="Create Auction" />
 
 	</Grid>
 </UserControl>
