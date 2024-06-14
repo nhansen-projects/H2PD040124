@@ -75,19 +75,19 @@ jobs:
       # Use always() to always run this step to publish test results when there are test failures
       if: ${{ always() }}
 
-    - name: Install Tree
-      run: sudo apt-get install tree
+    # - name: Install Tree
+    #   run: sudo apt-get install tree
 
-    - name: Go To AppPackages Folder
-      run: cd ${{ env.Wap_Project_Directory}}/AppPackages
+    # - name: Go To AppPackages Folder
+    #   run: cd ${{ env.Wap_Project_Directory}}/AppPackages
       
-    - name: Display Directories
-      run: tree
+    # - name: Display Directories
+    #   run: tree
 
     - name: Add Coverage PR Comment
       uses: marocchino/sticky-pull-request-comment@v2
       if: github.event_name == 'pull_request'
       with:
         recreate: true
-        path: code-coverage-results.md
+        path: ${{ env.Wap_Project_Directory}}/AppPackages/AuctionTest/code-coverage-results.md
         
