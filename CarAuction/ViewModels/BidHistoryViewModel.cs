@@ -10,9 +10,11 @@ namespace CarAuction.ViewModels
     internal class BidHistoryViewModel : ViewModelBase
     {
         private MainWindowViewModel main;
-        public BidHistoryViewModel(MainWindowViewModel main)
+        private LoginViewModel login;
+        public BidHistoryViewModel(MainWindowViewModel main, LoginViewModel login)
         {
             this.main = main;
+            this.login = login;
         }
 
         public BidHistoryViewModel()
@@ -28,7 +30,7 @@ namespace CarAuction.ViewModels
 
         public void BackBtn()
         {
-            main.SetViewModel(new HomePageViewModel(main));
+            main.SetViewModel(new HomePageViewModel(main, login));
         }
 
 

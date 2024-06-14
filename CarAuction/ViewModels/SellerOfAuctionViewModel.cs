@@ -10,9 +10,11 @@ namespace CarAuction.ViewModels
     internal class SellerOfAuctionViewModel : ViewModelBase
     {
         private MainWindowViewModel main;
-        public SellerOfAuctionViewModel(MainWindowViewModel main)
+        private LoginViewModel login;
+        public SellerOfAuctionViewModel(MainWindowViewModel main, LoginViewModel login)
         {
             this.main = main;
+            this.login = login;
         }
 
         public SellerOfAuctionViewModel()

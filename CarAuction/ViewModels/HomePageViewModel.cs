@@ -10,9 +10,11 @@ namespace CarAuction.ViewModels
     {
 
         private MainWindowViewModel main;
-        public HomePageViewModel(MainWindowViewModel main)
+        private LoginViewModel login;
+        public HomePageViewModel(MainWindowViewModel main, LoginViewModel login)
         {
             this.main = main;
+            this.login = login;
         }
 
         public HomePageViewModel()
@@ -28,17 +30,17 @@ namespace CarAuction.ViewModels
 
         public void SetForSale()
         {
-            main.SetViewModel(new SetForSaleViewModel(main));
+            main.SetViewModel(new SetForSaleViewModel(main, login));
         }
 
         public void MyProfile()
         {
-            main.SetViewModel(new MyProfileViewModel(main));
+            main.SetViewModel(new MyProfileViewModel(main, login));
         }
 
         public void BidHistory()
         {
-            main.SetViewModel(new BidHistoryViewModel(main));
+            main.SetViewModel(new BidHistoryViewModel(main, login));
         } 
         
     }

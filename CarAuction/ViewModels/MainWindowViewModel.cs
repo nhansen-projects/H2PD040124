@@ -9,7 +9,6 @@ namespace CarAuction.ViewModels
         private ViewModelBase _contentViewModel;
 
 
-
         public ViewModelBase ContentViewModel
         {
             get => _contentViewModel;

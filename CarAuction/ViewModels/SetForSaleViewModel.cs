@@ -10,10 +10,12 @@ namespace CarAuction.ViewModels
     public class SetForSaleViewModel : ViewModelBase
     {
         private MainWindowViewModel main;
+        private LoginViewModel login;
 
-        public SetForSaleViewModel(MainWindowViewModel main)
+        public SetForSaleViewModel(MainWindowViewModel main, LoginViewModel login)
         {
             this.main = main;
+            this.login = login;
         }
 
         public SetForSaleViewModel()
@@ -112,6 +114,7 @@ namespace CarAuction.ViewModels
             string TowBar = "MISSING";
 
             List<string> CreateSaleList = new List<string> { SaleName, SaleMilage, SaleRegnr, Year, SaleStarting, CloseAuction, VehicleType, SaleHeight, SaleLength, SaleWeight, SaleEngineSize, TowBar};
+            main.SetViewModel(new HomePageViewModel(main, login));
         }
 
 
@@ -119,7 +122,7 @@ namespace CarAuction.ViewModels
 
         public void CancelBtn()
         {
-            main.SetViewModel(new HomePageViewModel(main));
+            main.SetViewModel(new HomePageViewModel(main, login));
         }
 
     }

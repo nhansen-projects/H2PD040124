@@ -10,9 +10,11 @@ namespace CarAuction.ViewModels
     internal class MyProfileViewModel : ViewModelBase
     {
         private MainWindowViewModel main;
-        public MyProfileViewModel(MainWindowViewModel main)
+        private LoginViewModel login;
+        public MyProfileViewModel(MainWindowViewModel main, LoginViewModel login)
         {
             this.main = main;
+            this.login = login;
         }
 
         public MyProfileViewModel()
@@ -78,7 +80,7 @@ namespace CarAuction.ViewModels
 
         public void BackBtn()
         {
-            main.SetViewModel(new HomePageViewModel(main));
+            main.SetViewModel(new HomePageViewModel(main, login));
         }
     }
 }
