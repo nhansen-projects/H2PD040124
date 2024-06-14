@@ -9,7 +9,7 @@ namespace CarAuction.ViewModels
     public class LoginViewModel : ViewModelBase
     {
         private MainWindowViewModel main;
-        LoginViewModel login = new();
+        private LoginViewModel login;
         public LoginViewModel(MainWindowViewModel main)
         {
             this.main = main;
@@ -66,7 +66,6 @@ namespace CarAuction.ViewModels
             //Check om det findes
             string DummyUSERNAME = "DUMMYDATA";
             string DummyPASSWORD = "DUMMYDATA";
-
 
             if (UserNameInput == DummyUSERNAME && PasswordInput == DummyPASSWORD)
             {
