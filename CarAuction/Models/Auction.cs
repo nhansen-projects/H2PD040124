@@ -16,4 +16,5 @@ public class Auction
         _buyerId = buyerId;
         _minimumPrice = minimumPrice;
     }
+    
 }
