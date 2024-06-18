@@ -1,4 +1,10 @@
 using CarAuction.Models;
+using Microsoft.Data.SqlClient;
+using Xunit;
+using Moq;
+using System.Data;
+using Microsoft.Data.SqlClient;
+using CarAuction.ConnectionHandlers;
 
 namespace AuctionTest
 {
@@ -36,7 +42,7 @@ namespace AuctionTest
             var auction = new Auction(1, 1, 1, 1, 1.0);
             Assert.NotNull(auction);
         }
-
+        
         [Fact]
         public void TestVehicleClass()
         {
@@ -112,6 +118,86 @@ namespace AuctionTest
             Vehicle vehicle = new Vehicle(1, "Car", 1000, "ABC123", year, true, "B", 2.0, kmPerLiter, fuelType);
 
             Assert.Equal(expectedEnergyClass, vehicle.EnergyType);
+        }
+        
+        public class DatabaseTests
+        {
+            [Fact]
+            public void Insert_WithValidParameters_ExecutesNonQuery()
+            {
+                // Arrange
+                var mockConnection = new Mock<SqlConnection>();
+                var mockCommand = new Mock<SqlCommand>();
+                mockCommand.Setup(m => m.ExecuteNonQuery()).Returns(1);
+                mockConnection.Setup(m => m.CreateCommand()).Returns(mockCommand.Object);
+                Database.ConnectionString = mockConnection.Object.ConnectionString;
+
+                // Act
+                Database.Insert("TestTable", new string[] { "Column1", "Column2" },
+                    new string[] { "Value1", "Value2" });
+
+                // Assert
+                mockCommand.Verify(m => m.ExecuteNonQuery(), Times.Once);
+            }
+
+            [Fact]
+            public void Update_WithValidParameters_ExecutesNonQuery()
+            {
+                var mockConnection = new Mock<SqlConnection>();
+                var mockCommand = new Mock<SqlCommand>();
+                mockCommand.Setup(m => m.ExecuteNonQuery()).Returns(1);
+                mockConnection.Setup(m => m.CreateCommand()).Returns(mockCommand.Object);
+                Database.ConnectionString = mockConnection.Object.ConnectionString;
+
+                Database.Update("TestTable", new string[] { "Column1", "Column2" }, new string[] { "Value1", "Value2" },
+                    "Condition");
+
+                mockCommand.Verify(m => m.ExecuteNonQuery(), Times.Once);
+            }
+
+            [Fact]
+            public void Delete_WithValidParameters_ExecutesNonQuery()
+            {
+                var mockConnection = new Mock<SqlConnection>();
+                var mockCommand = new Mock<SqlCommand>();
+                mockCommand.Setup(m => m.ExecuteNonQuery()).Returns(1);
+                mockConnection.Setup(m => m.CreateCommand()).Returns(mockCommand.Object);
+                Database.ConnectionString = mockConnection.Object.ConnectionString;
+
+                Database.Delete("TestTable", "Condition");
+
+                mockCommand.Verify(m => m.ExecuteNonQuery(), Times.Once);
+            }
+
+            [Fact]
+            public void Select_WithValidParameters_ReturnsDataReader()
+            {
+                var mockConnection = new Mock<SqlConnection>();
+                var mockCommand = new Mock<SqlCommand>();
+                var mockReader = new Mock<SqlDataReader>();
+                mockCommand.Setup(m => m.ExecuteReader()).Returns(mockReader.Object);
+                mockConnection.Setup(m => m.CreateCommand()).Returns(mockCommand.Object);
+                Database.ConnectionString = mockConnection.Object.ConnectionString;
+
+                var result = Database.Select("TestTable", new string[] { "Column1", "Column2" }, "Condition");
+
+                Assert.NotNull(result);
+            }
+
+            [Fact]
+            public void SelectAll_WithValidParameters_ReturnsDataReader()
+            {
+                var mockConnection = new Mock<SqlConnection>();
+                var mockCommand = new Mock<SqlCommand>();
+                var mockReader = new Mock<SqlDataReader>();
+                mockCommand.Setup(m => m.ExecuteReader()).Returns(mockReader.Object);
+                mockConnection.Setup(m => m.CreateCommand()).Returns(mockCommand.Object);
+                Database.ConnectionString = mockConnection.Object.ConnectionString;
+
+                var result = Database.SelectAll("TestTable");
+
+                Assert.NotNull(result);
+            }
         }
     }
 }
