@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CarAuction.Models;
+using DynamicData.Kernel;
 using ReactiveUI;
 
 namespace CarAuction.ViewModels
@@ -9,7 +11,8 @@ namespace CarAuction.ViewModels
     public class LoginViewModel : ViewModelBase
     {
         private MainWindowViewModel main;
-        private LoginViewModel login;
+
+        
         public LoginViewModel(MainWindowViewModel main)
         {
             this.main = main;
@@ -61,32 +64,26 @@ namespace CarAuction.ViewModels
             }
         }
 
+
+        MyProfileViewModel user = new();
         public void Handlers()
         {
             //Check om det findes
-            string DummyUSERNAME = "DUMMYDATA";
-            string DummyPASSWORD = "DUMMYDATA";
+            string DummyUSERNAME = "A";
+            string DummyPASSWORD = "S";
 
             if (UserNameInput == DummyUSERNAME && PasswordInput == DummyPASSWORD)
             {
-                main.SetViewModel(new HomePageViewModel(main, login));
+                user.Username = UserNameInput;
+                user.Password = PasswordInput;
+
+
+                main.SetViewModel(new HomePageViewModel(main, user));
             }
             else
             {
                 Error = "Invalid Username Or Password";
-                //Slettes når databasen er koblet til
-                main.SetViewModel(new HomePageViewModel(main, login));
-            }
-                
-
-            
-      
-
+            }  
         }
-
-
-
-
-
     }
 }

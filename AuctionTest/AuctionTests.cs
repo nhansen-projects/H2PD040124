@@ -31,11 +31,11 @@ namespace AuctionTest
 
             // users
             Assert.NotNull(commercialVehicle);
-            var user = new User(1, "Bob", "a@a.dk", "wery saife");
+            var user = new User(1, "Bob", "wery saife", "password");
             Assert.NotNull(user);
-            var privateUser = new PrivateUser(1, "Bob", "a@a.dk", "wery saife", "1234");
+            var privateUser = new PrivateUser(1, "Bob", "wery saife", "1234", "1234567890");
             Assert.NotNull(privateUser);
-            var corporateUser = new CorporateUser(1, "Bob", "a@a.dk", "wery saife", 1, 12431243);
+            var corporateUser = new CorporateUser(1, "Bob", "wery saife", "password", 12431243, 1234567890);
             Assert.NotNull(corporateUser);
 
             // auction

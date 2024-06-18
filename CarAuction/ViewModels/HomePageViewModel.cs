@@ -1,4 +1,5 @@
 ﻿using System;
+using CarAuction.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,15 +7,14 @@ using System.Threading.Tasks;
 
 namespace CarAuction.ViewModels
 {
-    internal class HomePageViewModel : ViewModelBase
+    public class HomePageViewModel : ViewModelBase
     {
-
         private MainWindowViewModel main;
-        private LoginViewModel login;
-        public HomePageViewModel(MainWindowViewModel main, LoginViewModel login)
+        private MyProfileViewModel user;
+        public HomePageViewModel(MainWindowViewModel main, MyProfileViewModel user)
         {
             this.main = main;
-            this.login = login;
+            this.user = user;
         }
 
         public HomePageViewModel()
@@ -30,27 +30,27 @@ namespace CarAuction.ViewModels
 
         public void SetForSale()
         {
-            main.SetViewModel(new SetForSaleViewModel(main, login));
+            main.SetViewModel(new SetForSaleViewModel(main, user));
         }
 
         public void MyProfile()
         {
-            main.SetViewModel(new MyProfileViewModel(main, login));
+            main.SetViewModel(new MyProfileViewModel(main, user));
         }
 
         public void BidHistory()
         {
-            main.SetViewModel(new BidHistoryViewModel(main, login));
+            main.SetViewModel(new BidHistoryViewModel(main, user));
         }
 
         public void BuyerOfAuction()
         {
-            main.SetViewModel(new BuyerOfAuctionViewModel(main, login));
+            main.SetViewModel(new BuyerOfAuctionViewModel(main, user));
         }
 
         public void SellerOfAuction()
         {
-            main.SetViewModel(new SellerOfAuctionViewModel(main, login));
+            main.SetViewModel(new SellerOfAuctionViewModel(main, user));
         }
     }
 }
