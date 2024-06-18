@@ -1,8 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using CarAuction.Models;
+using JetBrains.Annotations;
+using Microsoft.CodeAnalysis;
+using Microsoft.VisualBasic;
 using ReactiveUI;
 
 namespace CarAuction.ViewModels
@@ -104,16 +110,110 @@ namespace CarAuction.ViewModels
             }
         }
 
+        private string _towBar;
+        public string TowBar
+        {
+            get => _towBar;
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _towBar, value, nameof(TowBar));
+            }
+        }
+
+        public void HasTowBar()
+        {
+            TowBar = "Yes";
+        }
+
+        public void NoTowBar()
+        {
+            TowBar = "No";
+        }
+
+
+        private string _vehicleTypeIndex;
+        public string VehicleTypeIndex
+        {
+            get => _vehicleTypeIndex;
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _vehicleTypeIndex, value, nameof(VehicleTypeIndex));
+            }
+        }
+
+
+        private string vehicleType;
+
+        public void TypeOfVehicle()
+        {
+            switch (VehicleTypeIndex)
+            {
+                case "0":
+                    vehicleType = "So";
+                    break;
+                case "1":
+                    vehicleType = "Truck";
+                    break;
+                case "2":
+                    vehicleType = "Car";
+                    break;
+                case "3":
+                    vehicleType = "Bike";
+                    break;
+                case "4":
+                    vehicleType = "Bus";
+                    break;
+                case "5":
+                    vehicleType = "ko";
+                    break;
+            }
+        }
+
+
+        private string _year;
+        public string Year
+        {
+            get => _year;
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _year, value, nameof(Year));
+            }
+        }
+
+
+        public string ConYear;
+        public void ConvertToYear()
+        {
+            string ShowYear = @"\b\d{4}\b";
+
+            Match match = Regex.Match(Year, ShowYear);
+            if (match.Success)
+            {
+                string year = match.Value;
+                ConYear = year;
+            }
+            else 
+            {
+                
+            }
+        }
+
+        private string _closeAuction;
+        public string CloseAuction
+        {
+            get => _closeAuction;
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _closeAuction, value, nameof(CloseAuction));
+            }
+        }
+
 
         public void CreateAuctionBtn()
         {
-            //All missing are in dummy strings
-            string Year = "MISSING";
-            string CloseAuction = "MISSING";
-            string VehicleType = "MISSING";
-            string TowBar = "MISSING";
-
-            List<string> CreateSaleList = new List<string> { SaleName, SaleMilage, SaleRegnr, Year, SaleStarting, CloseAuction, VehicleType, SaleHeight, SaleLength, SaleWeight, SaleEngineSize, TowBar};
+            TypeOfVehicle();
+            ConvertToYear();
+            List<string> CreateSaleList = new List<string> { SaleName, SaleMilage, SaleRegnr, ConYear, SaleStarting, CloseAuction, vehicleType, SaleHeight, SaleLength, SaleWeight, SaleEngineSize, TowBar};
             main.SetViewModel(new HomePageViewModel(main, login));
         }
 
