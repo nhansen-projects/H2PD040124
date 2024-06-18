@@ -14,7 +14,7 @@ public class Vehicle
     private string _fuelType;
     private string _energyType;
     
-    public Vehicle(int id, string name, double km, string regnr, int year, bool towingHook, string driversLicenseType, string engineSize, double kmPerLiter, string fuelType, string energyType)
+    public Vehicle(int id, string name, double km, string regnr, int year, bool towingHook, string driversLicenseType, double engineSize, double kmPerLiter, string fuelType, string energyType)
     {
         _id = id;
         _name = name;
