@@ -40,6 +40,13 @@
 		<!-- BidHistory Button -->
 		<Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" Command="{Binding BidHistory}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="Gray" Foreground="White" Content="Bid History" />
 
+		<!-- BuyerOfAuction Button -->
+		<Button Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="1" Command="{Binding BuyerOfAuction}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="Gray" Foreground="White" Content="Buyer" />
+
+		<!-- SellerOfAuction Button -->
+		<Button Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="1" Command="{Binding SellerOfAuction}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="Gray" Foreground="White" Content="Seller" />
+
+
 
 
 

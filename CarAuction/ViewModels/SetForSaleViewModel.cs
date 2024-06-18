@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using CarAuction.Models;
 using JetBrains.Annotations;
 using Microsoft.CodeAnalysis;
@@ -17,96 +18,98 @@ namespace CarAuction.ViewModels
     {
         private MainWindowViewModel main;
         private LoginViewModel login;
+        private Vehicle _vehicle;
 
         public SetForSaleViewModel(MainWindowViewModel main, LoginViewModel login)
         {
             this.main = main;
             this.login = login;
+            _vehicle = new Vehicle();
         }
 
         public SetForSaleViewModel()
         {
-
+            
         }
 
-        private string _SaleName;
+        private string _saleName;
         public string SaleName
         {
-            get => _SaleName;
+            get => _saleName;
             set
             {
-                this.RaiseAndSetIfChanged(ref _SaleName, value, nameof(SaleName));
+                this.RaiseAndSetIfChanged(ref _saleName, value, nameof(SaleName));
             }
         }
 
-        private string _SaleMilage;
+        private string _saleMilage;
         public string SaleMilage
         {
-            get => _SaleMilage;
+            get => _saleMilage;
             set
             {
-                this.RaiseAndSetIfChanged(ref _SaleMilage, value, nameof(SaleMilage));
+                this.RaiseAndSetIfChanged(ref _saleMilage, value, nameof(SaleMilage));
             }
         }
 
-        private string _SaleRegnr;
+        private string _saleRegnr;
         public string SaleRegnr
         {
-            get => _SaleRegnr;
+            get => _saleRegnr;
             set
             {
-                this.RaiseAndSetIfChanged(ref _SaleRegnr, value, nameof(SaleRegnr));
+                this.RaiseAndSetIfChanged(ref _saleRegnr, value, nameof(SaleRegnr));
             }
         }
 
-        private string _SaleStarting;
+        private string _saleStarting;
         public string SaleStarting
         {
-            get => _SaleStarting;
+            get => _saleStarting;
             set
             {
-                this.RaiseAndSetIfChanged(ref _SaleStarting, value, nameof(SaleStarting));
+                this.RaiseAndSetIfChanged(ref _saleStarting, value, nameof(SaleStarting));
             }
         }
 
-        private string _SaleHeight;
+        private string _saleHeight;
         public string SaleHeight
         {
-            get => _SaleHeight;
+            get => _saleHeight;
             set
             {
-                this.RaiseAndSetIfChanged(ref _SaleHeight, value, nameof(SaleHeight));
+                this.RaiseAndSetIfChanged(ref _saleHeight, value, nameof(SaleHeight));
             }
         }
 
-        private string _SaleLength;
+        private string _saleLength;
         public string SaleLength
         {
-            get => _SaleLength;
+            get => _saleLength;
             set
             {
-                this.RaiseAndSetIfChanged(ref _SaleLength, value, nameof(SaleLength));
+                this.RaiseAndSetIfChanged(ref _saleLength, value, nameof(SaleLength));
             }
         }
 
-        private string _SaleWeight;
+        private string _saleWeight;
         public string SaleWeight
         {
-            get => _SaleWeight;
+            get => _saleWeight;
             set
             {
-                this.RaiseAndSetIfChanged(ref _SaleWeight, value, nameof(SaleWeight));
+                this.RaiseAndSetIfChanged(ref _saleWeight, value, nameof(SaleWeight));
             }
         }
 
 
-        private string _SaleEngineSize;
+        private string _saleEngineSize;
         public string SaleEngineSize
         {
-            get => _SaleEngineSize;
+            get => _saleEngineSize;
             set
             {
-                this.RaiseAndSetIfChanged(ref _SaleEngineSize, value, nameof(SaleEngineSize));
+                this.RaiseAndSetIfChanged(ref _saleEngineSize, value, nameof(SaleEngineSize));
             }
         }
 

@@ -41,7 +41,16 @@ namespace CarAuction.ViewModels
         public void BidHistory()
         {
             main.SetViewModel(new BidHistoryViewModel(main, login));
-        } 
-        
+        }
+
+        public void BuyerOfAuction()
+        {
+            main.SetViewModel(new BuyerOfAuctionViewModel(main, login));
+        }
+
+        public void SellerOfAuction()
+        {
+            main.SetViewModel(new SellerOfAuctionViewModel(main, login));
+        }
     }
 }

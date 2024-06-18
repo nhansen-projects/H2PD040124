@@ -77,16 +77,6 @@ namespace CarAuction.ViewModels
                 //Slettes når databasen er koblet til
                 main.SetViewModel(new HomePageViewModel(main, login));
             }
-                
-
-            
-      
-
         }
-
-
-
-
-
     }
 }
