@@ -217,7 +217,8 @@ namespace CarAuction.ViewModels
             TypeOfVehicle();
             ConvertToYear();
             string[] CreateSaleList = { SaleName, SaleMilage, SaleRegnr, ConYear, SaleStarting, CloseAuction, vehicleType, SaleHeight, SaleLength, SaleWeight, SaleEngineSize, TowBar };
-            string[] columns = { "VehicleID", "SellerUserID", "BuyerUserID", "MinnimumPrice" };
+            // above values wrong, points towards not only Auction, but vehicle, User. Needs to create sale, add objects??
+            string[] columns = { "VehicleID", "SellerUserID", "BuyerUserID", "MinimumPrice" };
             string[] values = { "1", "1", "2", CreateSaleList[4].ToString() };
             Database.Insert("Auction", columns, values);
             Database.CloseConnection();

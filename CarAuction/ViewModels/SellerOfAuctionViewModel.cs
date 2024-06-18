@@ -19,7 +19,7 @@ namespace CarAuction.ViewModels
 
         public SellerOfAuctionViewModel()
         {
-
+            
         }
 
 
