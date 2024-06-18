@@ -37,6 +37,18 @@ namespace CarAuction.ViewModels
             //Noget der kan lave et pop up vindue der kan ændre adganskoden
         }
 
+
+        private string _password;
+        public string Password
+        {
+            get => _password;
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _password, value, nameof(Password));
+            }
+        }
+
+
         //Høre til ChangePassword
         private string _newPassword;
         public string NewPassword
@@ -58,6 +70,21 @@ namespace CarAuction.ViewModels
             }
         }
 
+        private string _newBalance;
+        public string NewBalance
+        {
+            get => _newBalance;
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _newBalance, value, nameof(NewBalance));
+            }
+        }
+
+
+        public void ChangeBalanceBtn()
+        {
+            Balance = 
+        }
         private string _myAuctions;
         public string MyAuctions
         {
@@ -77,6 +104,13 @@ namespace CarAuction.ViewModels
                 this.RaiseAndSetIfChanged(ref _auctionsWon, value, nameof(AuctionsWon));
             }
         }
+
+        public void ChangePasswordBtn()
+        {
+            //Noget der kan lave et pop up vindue der kan ændre adganskoden
+        }
+
+
 
         public void BackBtn()
         {

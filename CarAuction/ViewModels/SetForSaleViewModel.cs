@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Xml.Linq;
+using CarAuction.ConnectionHandlers;
 using CarAuction.Models;
 using JetBrains.Annotations;
 using Microsoft.CodeAnalysis;
@@ -17,19 +17,17 @@ namespace CarAuction.ViewModels
     public class SetForSaleViewModel : ViewModelBase
     {
         private MainWindowViewModel main;
-        private LoginViewModel login;
-        private Vehicle _vehicle;
+        private MyProfileViewModel user;
 
-        public SetForSaleViewModel(MainWindowViewModel main, LoginViewModel login)
+        public SetForSaleViewModel(MainWindowViewModel main, MyProfileViewModel user)
         {
             this.main = main;
-            this.login = login;
-            _vehicle = new Vehicle();
+            this.user = user;
         }
 
         public SetForSaleViewModel()
         {
-            
+
         }
 
         private string _saleName;
@@ -195,9 +193,9 @@ namespace CarAuction.ViewModels
                 string year = match.Value;
                 ConYear = year;
             }
-            else 
+            else
             {
-                
+
             }
         }
 
@@ -216,8 +214,8 @@ namespace CarAuction.ViewModels
         {
             TypeOfVehicle();
             ConvertToYear();
-            List<string> CreateSaleList = new List<string> { SaleName, SaleMilage, SaleRegnr, ConYear, SaleStarting, CloseAuction, vehicleType, SaleHeight, SaleLength, SaleWeight, SaleEngineSize, TowBar};
-            main.SetViewModel(new HomePageViewModel(main, login));
+            List<string> CreateSaleList = new List<string> { SaleName, SaleMilage, SaleRegnr, ConYear, SaleStarting, CloseAuction, vehicleType, SaleHeight, SaleLength, SaleWeight, SaleEngineSize, TowBar };
+            main.SetViewModel(new HomePageViewModel(main, user));
         }
 
 
@@ -225,7 +223,7 @@ namespace CarAuction.ViewModels
 
         public void CancelBtn()
         {
-            main.SetViewModel(new HomePageViewModel(main, login));
+            main.SetViewModel(new HomePageViewModel(main, user));
         }
 
     }

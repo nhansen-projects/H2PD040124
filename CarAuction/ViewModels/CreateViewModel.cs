@@ -75,8 +75,17 @@ namespace CarAuction.ViewModels
 
 
         public void CreateUser()
-        {
-            main.SetViewModel(new LoginViewModel(main));
+        {                                                       
+            if (PasswordInput != PasswordAgainInput || UserNameInput == Error)//Database.UsernameExist istedet for Error)
+            {
+                Error = "[Username Is Already In Use] or [Password Does Not Match]";
+            }
+            else
+            {
+                Error = "Your Account Was Created";
+                main.SetViewModel(new LoginViewModel(main));
+            }
+
         }
 
         public void Cancel()
