@@ -9,11 +9,11 @@ public class Vehicle
     private int _year;
     private bool _towingHook;
     private string _driversLicenseType;
-    private string _engineSize;
+    private double _engineSize;
     private double _kmPerLiter;
     private string _fuelType;
     private string _energyType;
-    
+
     public int Id
     {
         get => _id;
@@ -49,7 +49,7 @@ public class Vehicle
         get => _driversLicenseType;
         set => _driversLicenseType = value;
     }
-    public string EngineSize
+    public double EngineSize
     {
         get => _engineSize;
         set => _engineSize = value;
@@ -69,5 +69,5 @@ public class Vehicle
         get => _energyType;
         set => _energyType = value;
     }
-    
+
 }
