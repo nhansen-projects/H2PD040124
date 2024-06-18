@@ -44,7 +44,8 @@
 		
 		<!--Page Text Functioner-->
 		<TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Text="{Binding Username}" FontSize="14"></TextBlock>
-		<Button Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" Command="{Binding ChangePasswordBtn}"  VerticalAlignment="Center" Background="Gray" Foreground="White" Content="Change Password" />
+		<TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Text="{Binding Password}" FontSize="14"></TextBlock>
+		<Button Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Right" Command="{Binding ChangePasswordBtn}"  VerticalAlignment="Center" Background="Gray" Foreground="White" Content="Change Password" />
 		<TextBlock Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Text="{Binding Balance}" FontSize="14"></TextBlock>
 		
 		<TextBlock Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Text="{Binding MyAuctions}" FontSize="14"></TextBlock>

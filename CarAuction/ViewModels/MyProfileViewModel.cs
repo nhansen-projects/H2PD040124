@@ -3,25 +3,31 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CarAuction.Models;
 using System.Threading.Tasks;
 
 namespace CarAuction.ViewModels
 {
-    internal class MyProfileViewModel : ViewModelBase
+    public class MyProfileViewModel : ViewModelBase
     {
         private MainWindowViewModel main;
-        private LoginViewModel login;
-        public MyProfileViewModel(MainWindowViewModel main, LoginViewModel login)
+        private MyProfileViewModel user;
+
+        public MyProfileViewModel(MainWindowViewModel main, MyProfileViewModel user)
         {
             this.main = main;
-            this.login = login;
+            this.user = user;
+
+            _username = user.Username;
+            _password = user.Password;
         }
 
         public MyProfileViewModel()
         {
-
+            
         }
 
+        
         private string _username;
         public string Username
         {
@@ -31,6 +37,18 @@ namespace CarAuction.ViewModels
                 this.RaiseAndSetIfChanged(ref _username, value, nameof(Username));
             }
         }
+
+
+        private string _password;
+        public string Password
+        {
+            get => _password;
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _password, value, nameof(Password));
+            }
+        }
+
 
         public void ChangePasswordBtn()
         {
@@ -80,7 +98,7 @@ namespace CarAuction.ViewModels
 
         public void BackBtn()
         {
-            main.SetViewModel(new HomePageViewModel(main, login));
+            main.SetViewModel(new HomePageViewModel(main, user));
         }
     }
 }
