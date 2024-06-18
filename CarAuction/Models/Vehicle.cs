@@ -46,8 +46,8 @@ public class Vehicle
     }
     public string Regnr
     {
-        get => _Regnr;
-        set => _Regnr = value;
+        get => _regnr;
+        set => _regnr = value;
     }
     public int Year
     {
