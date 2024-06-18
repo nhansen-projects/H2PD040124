@@ -1,0 +1,170 @@
+
+CREATE TABLE [Auction] ( 
+
+  [ID] INT not null primary key, 
+
+  [VehicleID] INT, 
+
+  [SellerUserID] INT, 
+
+  [BuyerUserID] INT, 
+
+  [MinimumPrice] INT 
+
+); 
+
+ALTER TABLE Auction
+alter column ID int not null;
+ALTER TABLE Auction
+ADD PRIMARY KEY (ID);
+
+CREATE TABLE [User] ( 
+
+  [ID] INT not null primary key, 
+
+  [UserName] varchar, 
+
+  [Password] varchar, 
+
+  [PostalCode] INT, 
+
+); 
+
+CREATE TABLE [CorporateCustomer] ( 
+
+  [ID] INT NOT NULL PRIMARY KEY,
+
+  [UserID] INT not null,
+
+  [Credit] INT, 
+
+  [CVR Number] varchar 
+
+); 
+
+CREATE TABLE [PrivateCustomer] ( 
+  
+  [ID] INT NOT NULL PRIMARY KEY,
+
+  [UserID] INT NOT NULL, 
+
+  [CPR Number] varchar 
+
+); 
+
+CREATE TABLE [Vehicle] ( 
+
+  [ID] int not null primary key, 
+
+  [Name] varchar(255), 
+
+  [Km] float, 
+
+  [Regnr] varchar(7), 
+
+  [Year] int, 
+
+  [TowingHook] BIT, 
+
+  [DriverLicenseType] varchar(255), 
+
+  [EngineSize] varchar(255), 
+
+  [KmPerLiter] float, 
+
+  [FuelType] varchar(255), 
+
+  [EnergyClass] varchar(7), 
+
+); 
+
+CREATE TABLE [HeavyVehicle] ( 
+
+  [HeavyVehicleID] INT not null primary key, 
+
+  [VehicleID] INT, 
+
+  [Height] float, 
+
+  [Length] float, 
+
+  [Weight] float, 
+  );
+
+CREATE TABLE [PassengerVehicle] ( 
+
+  [ID] INT not null primary key, 
+
+  [VehicleId] INT NOT NULL
+); 
+
+CREATE TABLE [Truck] ( 
+
+  [ID] int not null primary key, 
+
+  [HeavyVehicleID] int not null, 
+
+  [LoadCapacity] float
+
+); 
+
+CREATE TABLE [Bus] ( 
+
+  [ID] INT not null primary key, 
+
+  [HeavyVehicleID] INT, 
+
+  [NumberOfSeats] INT, 
+
+  [NumberOfBeds] INT, 
+
+  [ToiletsAvailable] BIT 
+
+); 
+
+CREATE TABLE [PrivateVehicle] ( 
+
+  [IsofixMount] BIT,
+  [PassengerVehicleID] INT not null, 
+
+); 
+
+CREATE TABLE [CommercialVehicle] ( 
+   
+  [ID] INT NOT NULL PRIMARY KEY,
+
+  [PassengerVehicleID] INT not null, 
+
+  [SafetyBar] BIT 
+
+); 
+
+ALTER TABLE [Auction]
+ADD FOREIGN KEY ([VehicleID]) REFERENCES Vehicle([ID]); 
+
+ALTER TABLE [CorporateCustomer]
+ADD FOREIGN KEY ([UserId]) REFERENCES [User]([ID]); 
+
+ALTER TABLE [PassengerVehicle]
+ADD FOREIGN KEY ([VehicleId]) REFERENCES [Vehicle]([ID]); 
+
+ALTER TABLE [PrivateCustomer]
+ADD FOREIGN KEY ([UserId]) REFERENCES [User]([ID]); 
+
+ALTER TABLE [PrivateVehicle]
+ADD FOREIGN KEY ([PassengerVehicleId]) REFERENCES [PassengerVehicle]([ID]); 
+
+ALTER TABLE [CommercialVehicle]
+ADD FOREIGN KEY ([PassengerVehicleID]) REFERENCES [PassengerVehicle]([ID]);
+
+ALTER TABLE [Truck]
+ADD FOREIGN KEY ([HeavyVehicleId]) REFERENCES [HeavyVehicleID]([ID]); 
+
+ALTER TABLE [HeavyVehicle]
+ADD FOREIGN KEY ([VehicleID]) REFERENCES [Vehicle]([ID]);
+
+ALTER TABLE [Bus]
+ADD FOREIGN KEY ([HeavyVehicleID]) REFERENCES HeavyVehicle([HeavyVehicleId]);
+
+
+
