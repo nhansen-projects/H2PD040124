@@ -13,13 +13,8 @@ public class Vehicle
     private double _kmPerLiter;
     private string _fuelType;
     private string _energyType;
-<<<<<<< HEAD
-    
-    public Vehicle(int id, string name, double km, string regnr, int year, bool towingHook, string driversLicenseType, double engineSize, double kmPerLiter, string fuelType, string energyType)
-=======
 
     public Vehicle(int id, string name, double km, string regnr, int year, bool towingHook, string driversLicenseType, double engineSize, double kmPerLiter, string fuelType)
->>>>>>> f98bad2a181634e5f06f732a4743f04b03daf772
     {
         _id = id;
         _name = name;

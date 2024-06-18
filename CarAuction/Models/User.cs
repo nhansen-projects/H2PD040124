@@ -8,11 +8,10 @@ public class User
     private string _username;
     private string _password;
     
-    public User(int id, string name, string email, string username, string password)
+    public User(int id, string name, string username, string password)
     {
         this._id = id;
         this._name = name;
-        this._email = email;
         this._username = username;
         this._password = password;
     }
@@ -27,12 +26,6 @@ public class User
     {
         get { return _name; }
         set { _name = value; }
-    }
-
-    public string Email
-    {
-        get { return _email; }
-        set { _email = value; }
     }
 
     public string Username

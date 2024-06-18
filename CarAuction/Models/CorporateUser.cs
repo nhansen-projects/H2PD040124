@@ -6,7 +6,7 @@ public class CorporateUser : User
     private int _credit;
     private int _cvrNumber;
 
-    public CorporateUser(int id, string name, string email, string username, string password, int credit, int cvrNumber) : base(id, name, email, username, password)
+    public CorporateUser(int id, string name, string username, string password, int credit, int cvrNumber) : base(id, name, username, password)
     {
         _credit = credit;
         _cvrNumber = cvrNumber;
