@@ -5,7 +5,7 @@ public class Vehicle
     private int _id;
     private string _name;
     private double _km;
-    private string _Regnr;
+    private string _regnr;
     private int _year;
     private bool _towingHook;
     private string _driversLicenseType;
@@ -19,7 +19,7 @@ public class Vehicle
         _id = id;
         _name = name;
         _km = km;
-        _Regnr = regnr;
+        _regnr = regnr;
         _year = year;
         _towingHook = towingHook;
         _driversLicenseType = driversLicenseType;
@@ -28,5 +28,4 @@ public class Vehicle
         _fuelType = fuelType;
         _energyType = energyType;
     }
-    
 }
