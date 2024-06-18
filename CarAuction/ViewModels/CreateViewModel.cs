@@ -76,7 +76,7 @@ namespace CarAuction.ViewModels
 
         public void CreateUser()
         {
-
+            main.SetViewModel(new LoginViewModel(main));
         }
 
         public void Cancel()

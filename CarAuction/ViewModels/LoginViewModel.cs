@@ -9,7 +9,7 @@ namespace CarAuction.ViewModels
     public class LoginViewModel : ViewModelBase
     {
         private MainWindowViewModel main;
-
+        private LoginViewModel login;
         public LoginViewModel(MainWindowViewModel main)
         {
             this.main = main;
@@ -61,12 +61,26 @@ namespace CarAuction.ViewModels
             }
         }
 
-
-        //Check om det findes
         public void Handlers()
-        
         {
-            main.SetViewModel(new HomePageViewModel(main));
+            //Check om det findes
+            string DummyUSERNAME = "DUMMYDATA";
+            string DummyPASSWORD = "DUMMYDATA";
+
+            if (UserNameInput == DummyUSERNAME && PasswordInput == DummyPASSWORD)
+            {
+                main.SetViewModel(new HomePageViewModel(main, login));
+            }
+            else
+            {
+                Error = "Invalid Username Or Password";
+                //Slettes når databasen er koblet til
+                main.SetViewModel(new HomePageViewModel(main, login));
+            }
+                
+
+            
+      
 
         }
 
