@@ -2,7 +2,7 @@ using CarAuction.Models;
 
 namespace AuctionTest
 {
-    public class UnitTest1
+    public class UnitTests
     {
         [Fact]
         public void TestCallClasses()
@@ -32,7 +32,7 @@ namespace AuctionTest
             Assert.NotNull(corporateUser);
             
             // auction
-            var auction = new Auction();
+            var auction = new Auction(1, 1, 1, 1, 1.0);
             Assert.NotNull(auction);
         }
     }
