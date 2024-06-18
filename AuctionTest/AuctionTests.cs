@@ -8,27 +8,28 @@ namespace AuctionTest
         public void TestConstructorCallClasses()
         {
             // vehicle classes
-            var vehicle = new Vehicle();
+            var vehicle = new Vehicle(1, "new car", 100000, "AB12345", 2000, true, "B", 2.0, 12.4, "Souls", "yes");
             Assert.NotNull(vehicle);
-            var passengerCar = new PassengerCar();
+            var passengerCar = new PassengerCar(1, "new car", 100000, "AB12345", 2000, true, "B", 2.0, 12.4, "Souls", "yes", 3, "1x2x3");
             Assert.NotNull(passengerCar);
-            var privateVehicle = new PrivateVehicle();
+            var privateVehicle = new PrivateVehicle(1, "new car", 100000, "AB12345", 2000, true, "B", 2.0, 12.4, "Souls", "yes", 3, "1x2x3", true);
             Assert.NotNull(privateVehicle);
-            var commercialVehicle = new CommercialVehicle();
-            var heavyVehicle = new HeavyVehicle();
+            var commercialVehicle = new CommercialVehicle(1, "new car", 100000, "AB12345", true, "B", 2.0, 12.4, "A", 3, "1x2x3", true, "Mercer", "The Good One", 2000, "Souls", 12, 1, true);
+            Assert.NotNull(commercialVehicle);
+            var heavyVehicle = new HeavyVehicle(1, "new car", 100000, "AB12345", 2000, true, "B", 2.0, 12.4, "Souls", "yes", 3, 4, 1, 9);
             Assert.NotNull(heavyVehicle);
-            var bus = new Bus();
+            var bus = new Bus(1, "new car", 100000, "AB12345", 2000, true, "B", 2.0, 12.4, "Souls", "yes", 3, 4, 1, 9, 5, 0);
             Assert.NotNull(bus);
-            var truck = new Truck();
+            var truck = new Truck(1, "new car", 100000, "AB12345", 2000, true, "B", 2.0, 12.4, "Souls", "yes", 3, 4, 1, 9, 50);
             Assert.NotNull(truck);
 
             // users
             Assert.NotNull(commercialVehicle);
-            var user = new User();
+            var user = new User(1, "Bob", "a@a.dk", "wery saife");
             Assert.NotNull(user);
-            var privateUser = new PrivateUser();
+            var privateUser = new PrivateUser(1, "Bob", "a@a.dk", "wery saife", "1234");
             Assert.NotNull(privateUser);
-            var corporateUser = new CorporateUser();
+            var corporateUser = new CorporateUser(1, "Bob", "a@a.dk", "wery saife", 1, 12431243);
             Assert.NotNull(corporateUser);
 
             // auction
@@ -39,18 +40,7 @@ namespace AuctionTest
         [Fact]
         public void TestVehicleClass()
         {
-            var vehicle = new Vehicle();
-            vehicle.Id = 1;
-            vehicle.Name = "Car";
-            vehicle.Km = 1000;
-            vehicle.Regnr = "ABC123";
-            vehicle.Year = 2020;
-            vehicle.TowingHook = true;
-            vehicle.DriversLicenseType = "B";
-            vehicle.EngineSize = 2.0;
-            vehicle.KmPerLiter = 20;
-            vehicle.FuelType = "Gasoline";
-            vehicle.EnergyType = "A";
+            var vehicle = new Vehicle(1, "Car", 1000, "ABC123", 2020, true, "B", 2.0, 20, "Gasoline", "A");
 
             Assert.Equal(1, vehicle.Id);
             Assert.Equal("Car", vehicle.Name);
@@ -67,20 +57,7 @@ namespace AuctionTest
         [Fact]
         public void TestPassengerCarClass()
         {
-            var passengerCar = new PassengerCar();
-            passengerCar.Id = 1;
-            passengerCar.Name = "Car";
-            passengerCar.Km = 1000;
-            passengerCar.Regnr = "ABC123";
-            passengerCar.Year = 2020;
-            passengerCar.TowingHook = true;
-            passengerCar.DriversLicenseType = "B";
-            passengerCar.EngineSize = 2.0;
-            passengerCar.KmPerLiter = 20;
-            passengerCar.FuelType = "Gasoline";
-            passengerCar.EnergyType = "B";
-            passengerCar.Seats = 5;
-            passengerCar.Dimensions = "4x4";
+            var passengerCar = new PassengerCar(1, "Car", 1000, "ABC123", 2020, true, "B", 2.0, 20, "Gasoline", "B", 5, "1x2x3");
 
             Assert.Equal(1, passengerCar.Id);
             Assert.Equal("Car", passengerCar.Name);
@@ -94,7 +71,7 @@ namespace AuctionTest
             Assert.Equal("Gasoline", passengerCar.FuelType);
             Assert.Equal("B", passengerCar.EnergyType);
             Assert.Equal(5, passengerCar.Seats);
-            Assert.Equal("4x4", passengerCar.Dimensions);
+            Assert.Equal("1x2x3", passengerCar.Dimensions);
         }
         [Theory]
         [InlineData(0)]
@@ -104,7 +81,7 @@ namespace AuctionTest
         [InlineData(20)]
         public void TestPassengerCarMotorSizeOutOfRange(double engineSizeInL)
         {
-            PassengerCar passengerCar = new PassengerCar();
+            PassengerCar passengerCar = new PassengerCar(1, "Car", 1000, "ABC123", 2020, true, "B", 2.0, 20, "Gasoline", "B", 5, "1x2x3");
 
             Assert.Throws<ArgumentOutOfRangeException>(() => passengerCar.EngineSize = engineSizeInL);
 
@@ -117,7 +94,7 @@ namespace AuctionTest
         [InlineData(5.2)]
         public void TestPassengerCarMotorSizeInRange(double engineSizeInL)
         {
-            PassengerCar passengerCar = new PassengerCar();
+            PassengerCar passengerCar = new PassengerCar(1, "Car", 1000, "ABC123", 2020, true, "B", 2.0, 20, "Gasoline", "B", 5, "1x2x3");
 
             passengerCar.EngineSize = engineSizeInL;
 
