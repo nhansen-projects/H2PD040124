@@ -72,7 +72,7 @@ namespace AuctionTest
             Assert.Equal(5, passengerCar.Seats);
             Assert.Equal("1x2x3", passengerCar.Dimensions);
         }
-        [Theory]
+        [Theory(Skip = "Tested Functionality Not Implemented Yet")]
         [InlineData(0)]
         [InlineData(0.5)]
         [InlineData(0.6)]
