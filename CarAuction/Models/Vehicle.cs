@@ -14,7 +14,7 @@ public class Vehicle
     private string _fuelType;
     private string _energyType;
 
-    public Vehicle(int id, string name, double km, string regnr, int year, bool towingHook, string driversLicenseType, double engineSize, double kmPerLiter, string fuelType, string energyType)
+    public Vehicle(int id, string name, double km, string regnr, int year, bool towingHook, string driversLicenseType, double engineSize, double kmPerLiter, string fuelType)
     {
         _id = id;
         _name = name;
@@ -26,7 +26,7 @@ public class Vehicle
         _engineSize = engineSize;
         _kmPerLiter = kmPerLiter;
         _fuelType = fuelType;
-        _energyType = energyType;
+        _energyType = GetEnergyClass();
     }
 
     public int Id
@@ -82,6 +82,80 @@ public class Vehicle
     public string EnergyType
     {
         get => _energyType;
-        set => _energyType = value;
+    }
+    private string GetEnergyClass()
+    {
+        if (FuelType == "Hydrogen" || FuelType == "Electricity") return "A";
+
+        if (Year < 2010)
+        {
+            if (FuelType == "Diesel")
+            {
+                switch (KmPerLiter)
+                {
+                    case >= 23:
+                        return "A";
+                    case >= 18:
+                        return "B";
+                    case >= 13:
+                        return "C";
+                    default:
+                        return "D";
+                }
+            }
+            else if (FuelType == "Gasoline")
+            {
+                switch (KmPerLiter)
+                {
+                    case >= 18:
+                        return "A";
+                    case >= 14:
+                        return "B";
+                    case >= 10:
+                        return "C";
+                    default:
+                        return "D";
+                }
+            }
+            else
+            {
+                return "D";
+            }
+        }
+        else
+        {
+            if (FuelType == "Diesel")
+            {
+                switch (KmPerLiter)
+                {
+                    case >= 25:
+                        return "A";
+                    case >= 20:
+                        return "B";
+                    case >= 15:
+                        return "C";
+                    default:
+                        return "D";
+                }
+            }
+            else if (FuelType == "Gasoline")
+            {
+                switch (KmPerLiter)
+                {
+                    case >= 20:
+                        return "A";
+                    case >= 16:
+                        return "B";
+                    case >= 12:
+                        return "C";
+                    default:
+                        return "D";
+                }
+            }
+            else
+            {
+                return "D";
+            }
+        }
     }
 }
