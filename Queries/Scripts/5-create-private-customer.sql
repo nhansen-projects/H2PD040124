@@ -1,6 +1,8 @@
 CREATE TABLE [PrivateCustomer] ( 
+  
+  [ID] INT NOT NULL PRIMARY KEY,
 
-  [UserID] INT, 
+  [UserID] INT NOT NULL, 
 
   [CPR Number] varchar 
 
