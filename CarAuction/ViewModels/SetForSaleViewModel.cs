@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using CarAuction.ConnectionHandlers;
 using CarAuction.Models;
 using JetBrains.Annotations;
 using Microsoft.CodeAnalysis;
@@ -212,9 +213,14 @@ namespace CarAuction.ViewModels
 
         public void CreateAuctionBtn()
         {
+            Database.OpenConnection();
             TypeOfVehicle();
             ConvertToYear();
-            List<string> CreateSaleList = new List<string> { SaleName, SaleMilage, SaleRegnr, ConYear, SaleStarting, CloseAuction, vehicleType, SaleHeight, SaleLength, SaleWeight, SaleEngineSize, TowBar };
+            string[] CreateSaleList = { SaleName, SaleMilage, SaleRegnr, ConYear, SaleStarting, CloseAuction, vehicleType, SaleHeight, SaleLength, SaleWeight, SaleEngineSize, TowBar };
+            string[] columns = { "VehicleID", "SellerUserID", "BuyerUserID", "MinnimumPrice" };
+            string[] values = { "1", "1", "2", CreateSaleList[4].ToString() };
+            Database.Insert("Auction", columns, values);
+            Database.CloseConnection();
             main.SetViewModel(new HomePageViewModel(main, login));
         }
 

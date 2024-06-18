@@ -16,7 +16,8 @@ namespace CarAuction.ConnectionHandlers
             DataSource = "docker.data.techcollege.dk,20002",
             UserID = "sa",
             IntegratedSecurity = false,
-            Password = "H2PD040124_Gruppe2"
+            Password = "H2PD040124_Gruppe2",
+            TrustServerCertificate = true
         };
 
         public static string ConnectionString { get; set; } = _builder.ConnectionString;
@@ -27,40 +28,40 @@ namespace CarAuction.ConnectionHandlers
         {
             Connection.Open();
         }
-        
+
         public static void CloseConnection()
         {
             Connection.Close();
         }
-        
+
         public static void Insert(string table, string[] columns, string[] values)
         {
             string query = $"INSERT INTO {table} ({string.Join(", ", columns)}) VALUES ({string.Join(", ", values)});";
             SqlCommand command = new SqlCommand(query, Connection);
             command.ExecuteNonQuery();
         }
-        
+
         public static void Update(string table, string[] columns, string[] values, string condition)
         {
             string query = $"UPDATE {table} SET {string.Join(", ", columns.Select((column, index) => $"{column} = {values[index]}"))} WHERE {condition};";
             SqlCommand command = new SqlCommand(query, Connection);
             command.ExecuteNonQuery();
         }
-        
+
         public static void Delete(string table, string condition)
         {
             string query = $"DELETE FROM {table} WHERE {condition};";
             SqlCommand command = new SqlCommand(query, Connection);
             command.ExecuteNonQuery();
         }
-        
+
         public static SqlDataReader Select(string table, string[] columns, string condition)
         {
             string query = $"SELECT {string.Join(", ", columns)} FROM {table} WHERE {condition};";
             SqlCommand command = new SqlCommand(query, Connection);
             return command.ExecuteReader();
         }
-        
+
         public static SqlDataReader SelectAll(string table)
         {
             string query = $"SELECT * FROM {table};";
