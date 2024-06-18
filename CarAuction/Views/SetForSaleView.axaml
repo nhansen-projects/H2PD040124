@@ -6,6 +6,7 @@
 			 x:CompileBindings="False"
              x:Class="CarAuction.Views.SetForSaleView">
 
+
 	<Grid ShowGridLines="false" Background="#333333">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition></ColumnDefinition>
@@ -56,20 +57,27 @@
 
 
 		<!--Year-->
-		<DatePicker Grid.Column="1" Grid.Row="4" DayVisible="False" MonthVisible="False" YearVisible="True"></DatePicker>
+		<DatePicker Grid.Column="1" Grid.Row="4" DayVisible="False" MonthVisible="False" YearVisible="True" SelectedDate="{Binding Year}"></DatePicker>
 
 		<!--Close Auction-->
-		<DatePicker Grid.Column="1" Grid.Row="6"></DatePicker>
+		<DatePicker Grid.Column="1" Grid.Row="6" SelectedDate="{Binding CloseAuction}"></DatePicker>
 
 		<!--Cancel Btn-->
 		<Button Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="1" Command="{Binding CancelBtn}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="Gray" Foreground="White" Content="Cancel" />
 
 		<!--Vehicle type-->
-		<ComboBox Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="1"  HorizontalAlignment="Stretch" VerticalAlignment="Center"></ComboBox>
-				
+		<ComboBox Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="1"  HorizontalAlignment="Stretch" SelectedIndex="{Binding VehicleTypeIndex}" VerticalAlignment="Center">
+			<ComboBoxItem>HeavyVehicle</ComboBoxItem>
+			<ComboBoxItem>Truck</ComboBoxItem>
+			<ComboBoxItem>Bus</ComboBoxItem>
+			<ComboBoxItem>Private</ComboBoxItem>
+			<ComboBoxItem>Commercial</ComboBoxItem>
+			<ComboBoxItem>PassengerVehicle</ComboBoxItem>
+		</ComboBox>
+
 		<!--Tow bar-->
-		<RadioButton Grid.Column="3" Grid.Row="6" HorizontalAlignment="Left" Content="Yes" Foreground="White"></RadioButton>
-		<RadioButton Grid.Column="3" Grid.Row="6" HorizontalAlignment="Right" Content="No"  Foreground="White"></RadioButton>
+		<RadioButton Grid.Column="3" Grid.Row="6" HorizontalAlignment="Left" Content="Yes" Command="{Binding HasTowBar}" Foreground="White"></RadioButton>
+		<RadioButton Grid.Column="3" Grid.Row="6" HorizontalAlignment="Right" Content="No" Command="{Binding NoTowBar}" Foreground="White"></RadioButton>
 
 		<!--Create Auction Btn-->
 		<Button Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="1" Command="{Binding CreateAuctionBtn}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="Gray" Foreground="White" Content="Create Auction" />

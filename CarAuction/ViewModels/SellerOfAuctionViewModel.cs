@@ -47,7 +47,7 @@ namespace CarAuction.ViewModels
 
         public void BackBtn()
         {
-            //main.SetViewModel(new HomePageViewModel(main)); VED IKKE OM DET ER TIL HomePage eller hvor Seller of auction skal være?
+            main.SetViewModel(new HomePageViewModel(main, login));
         }
 
 
