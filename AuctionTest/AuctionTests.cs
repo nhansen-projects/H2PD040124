@@ -194,6 +194,16 @@ namespace AuctionTest
 
                 Assert.NotNull(result);
             }
+
+            [Fact]
+            public void Test_User_Creation()
+            {
+                Database.NewUser(new User(1, "Bob", "9000", "1234"));
+                Database.SelectAll("User");
+                Assert.Contains("Bob", "9000", "1234");
+            }
+        }
+            
         }
     }
 }
