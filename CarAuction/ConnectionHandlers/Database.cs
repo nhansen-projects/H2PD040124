@@ -36,6 +36,13 @@ namespace CarAuction.ConnectionHandlers
         {
             Connection.Close();
         }
+        public static string GetScopeIdentity()
+        {
+            string query = "SELECT SCOPE_IDENTITY();";
+            SqlCommand command = new SqlCommand(query, Connection);
+
+            return command.ExecuteReader()[0].ToString();
+        }
 
         public static void Insert(string table, string[] columns, string[] values)
         {//Problemet er at alt de smider ind i values ikke kommer i quotation marks
@@ -106,15 +113,20 @@ namespace CarAuction.ConnectionHandlers
         public static void NewUser(User user)
         {
             Connection.Open();
-            string[] columns = new string[] { "Username","Password", "PostalCode" };
+            string[] columns = new string[] { "Username", "Password", "PostalCode" };
 
             string query = $"INSERT INTO [Vehicle] ({string.Join(", ", columns)}) VALUES (@Username, @Password, @PostalCode);";
             SqlCommand command = new SqlCommand(query, Connection);
-            
+
             command.Parameters.AddWithValue("@Username", user.Username);
             command.Parameters.AddWithValue("@Password", user.Password);
             command.Parameters.AddWithValue("@PostalCode", user.PostalCode);
             command.ExecuteNonQuery();
+
+            int.TryParse(GetScopeIdentity(), out int id);
+
+            user.Id = id;
+
             Connection.Close();
         }
     }

@@ -41,7 +41,7 @@ namespace AuctionTest
             var auction = new Auction(1, 1, 1, 1, 1.0);
             Assert.NotNull(auction);
         }
-        
+
         [Fact]
         public void TestVehicleClass()
         {
@@ -118,7 +118,7 @@ namespace AuctionTest
 
             Assert.Equal(expectedEnergyClass, vehicle.EnergyType);
         }
-        
+
         public class DatabaseTests
         {
             [Fact]
@@ -198,12 +198,18 @@ namespace AuctionTest
             [Fact]
             public void Test_User_Creation()
             {
-                Database.NewUser(new User(1, "Bob", "9000", "1234"));
-                Database.SelectAll("User");
-                Assert.Contains("Bob", "9000", "1234");
+                User newUser = new User();
+                newUser.Username = "Bob";
+                newUser.Password = "1234";
+                newUser.PostalCode = "9000";
+
+                Database.NewUser(newUser);
+
+                Database.OpenConnection();
+                Database.Select("User", new string[] { "Id", "Username", "Password", "PostalCode" }, $"Id = {newUser.Id}");
+                Database.CloseConnection();
             }
         }
-            
-        }
+
     }
 }
