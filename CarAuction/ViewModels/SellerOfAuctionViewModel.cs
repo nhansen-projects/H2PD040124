@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CarAuction.Models;
 
 namespace CarAuction.ViewModels
 {
@@ -11,10 +12,14 @@ namespace CarAuction.ViewModels
     {
         private MainWindowViewModel main;
         private MyProfileViewModel user;
+        private Vehicle vehicle;
+        private Auction auction;
+        
         public SellerOfAuctionViewModel(MainWindowViewModel main, MyProfileViewModel user)
         {
             this.main = main;
             this.user = user;
+            this.auction = auction;
         }
 
         public SellerOfAuctionViewModel()

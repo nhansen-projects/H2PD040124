@@ -142,6 +142,25 @@ namespace CarAuction.ConnectionHandlers
             CloseConnection();
             return result;
         }
+        public static void NewAuction(Auction auction)
+        {
+            Connection.Open();
+            string[] columns = new string[] { "VehicleID", "SellerUserID", "BuyerUserID", "MinimumPrice" };
+
+            string query = $"INSERT INTO [Vehicle] ({string.Join(", ", columns)}) VALUES (@Username, @Password, @PostalCode);";
+            SqlCommand command = new SqlCommand(query, Connection);
+            command.Parameters.AddWithValue("@VehicleID", auction.VehicleId);
+            command.Parameters.AddWithValue("@SellerUserID", auction.SellerId);
+            command.Parameters.AddWithValue("@BuyerUserID", auction.BuyerId);
+            command.Parameters.AddWithValue("@MinimumPrice", auction.MinimumPrice);
+            command.ExecuteNonQuery();
+
+            int.TryParse(GetScopeIdentity(), out int id);
+
+            auction.BuyerId = id;
+            
+            Connection.Close();
+        }
     }
 
 }
