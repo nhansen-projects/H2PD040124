@@ -30,16 +30,16 @@
 		<TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="24">CREATE USER</TextBlock>
 
 		<!-- LABELS FOR USER INFORMATION -->
-		
+
 		<TextBlock Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White">Username:</TextBlock>
 		<TextBlock Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White">Password:</TextBlock>
 		<TextBlock Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White">Password Again:</TextBlock>
-		
+
 
 		<!-- TEXTBOXES FOR USER INPUT -->
-		<TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding UserNameInput}"></TextBox>
-		<TextBox PasswordChar="*" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding PasswordInput}"></TextBox>
-		<TextBox PasswordChar="*" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding PasswordAgainInput}"></TextBox>
+		<TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding User.Username}"></TextBox>
+		<TextBox PasswordChar="*" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding User.Password}"></TextBox>
+		<TextBox PasswordChar="*" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding PaaswordAgain}"></TextBox>
 
 
 		<!-- CREATE USER BUTTON -->
