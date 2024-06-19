@@ -75,6 +75,14 @@
 		</ListBox>
 
 
+		<DataGrid Margin="20" Name="vehicleDataGrid" Items="{Binding Vehicles}"
+		  Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="3" Grid.Row="1"
+		  AutoGenerateColumns="True" IsReadOnly="True"
+		  GridLinesVisibility="All"
+		  BorderThickness="1" BorderBrush="Gray">
+		</DataGrid>
+
+		
 		<ListBox Grid.Row="5"
 				 Grid.Column="1"
 				 Grid.ColumnSpan="3"

@@ -4,29 +4,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
+using CarAuction.ConnectionHandlers;
+using System.Xml.Linq;
 
 namespace CarAuction.ViewModels
 {
-    internal class HomePageViewModel : ViewModelBase
+    public class HomePageViewModel : ViewModelBase
     {
-
-        private MainWindowViewModel main;
-        private MyProfileViewModel userProfileView;
+        private readonly MainWindowViewModel main;
+        private readonly MyProfileViewModel userProfileView;
+        public ObservableCollection<Vehicle> Vehicles { get; set; }
         private User user;
-
         public HomePageViewModel(MainWindowViewModel main, MyProfileViewModel userProfileView , User user)
         {
             this.main = main;
             this.userProfileView = userProfileView;
             this.user = user;
-
-        }  
+            Vehicles = Database.RetrieveData("Vehicle");
+        }
 
         public HomePageViewModel()
         {
 
         }
-
          
         public void LoginView()
         {
