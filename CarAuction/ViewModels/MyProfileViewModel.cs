@@ -10,11 +10,11 @@ namespace CarAuction.ViewModels
     public class MyProfileViewModel : ViewModelBase
     {
         private MainWindowViewModel main;
-        private LoginViewModel login;
-        public MyProfileViewModel(MainWindowViewModel main, LoginViewModel login)
+        private MyProfileViewModel user;
+        public MyProfileViewModel(MainWindowViewModel main, MyProfileViewModel user)
         {
             this.main = main;
-            this.login = login;
+            this.user = user;
         }
 
         public MyProfileViewModel()
@@ -31,12 +31,6 @@ namespace CarAuction.ViewModels
                 this.RaiseAndSetIfChanged(ref _username, value, nameof(Username));
             }
         }
-
-        public void ChangePasswordBtn()
-        {
-            //Noget der kan lave et pop up vindue der kan ændre adganskoden
-        }
-
 
         private string _password;
         public string Password
@@ -83,7 +77,7 @@ namespace CarAuction.ViewModels
 
         public void ChangeBalanceBtn()
         {
-            Balance = 
+
         }
         private string _myAuctions;
         public string MyAuctions
@@ -114,7 +108,7 @@ namespace CarAuction.ViewModels
 
         public void BackBtn()
         {
-            main.SetViewModel(new HomePageViewModel(main, login));
+            main.SetViewModel(new HomePageViewModel(main, user));
         }
     }
 }
