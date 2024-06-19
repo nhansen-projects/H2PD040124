@@ -4,16 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CarAuction.Models;
 
 namespace CarAuction.ViewModels
 {
     public class MyProfileViewModel : ViewModelBase
     {
         private MainWindowViewModel main;
-        private MyProfileViewModel user;
-        public MyProfileViewModel(MainWindowViewModel main, MyProfileViewModel user)
+        private MyProfileViewModel userProfileView;
+        private User user;
+        public MyProfileViewModel(MainWindowViewModel main, MyProfileViewModel userProfileView, User user)
         {
             this.main = main;
+            this.userProfileView = userProfileView;
             this.user = user;
         }
 
@@ -108,7 +111,7 @@ namespace CarAuction.ViewModels
 
         public void BackBtn()
         {
-            main.SetViewModel(new HomePageViewModel(main, user));
+            main.SetViewModel(new HomePageViewModel(main, userProfileView, user));
         }
     }
 }

@@ -12,24 +12,22 @@ namespace CarAuction.ViewModels
 {
     public class HomePageViewModel : ViewModelBase
     {
-
         private readonly MainWindowViewModel main;
-        private readonly MyProfileViewModel user;
+        private readonly MyProfileViewModel userProfileView;
         public ObservableCollection<Vehicle> Vehicles { get; set; }
-        public HomePageViewModel(MainWindowViewModel main, MyProfileViewModel user)
+        private User user;
+        public HomePageViewModel(MainWindowViewModel main, MyProfileViewModel userProfileView , User user)
         {
             this.main = main;
+            this.userProfileView = userProfileView;
             this.user = user;
-
             Vehicles = Database.RetrieveData("Vehicle");
         }
-
 
         public HomePageViewModel()
         {
 
         }
-
          
         public void LoginView()
         {
@@ -38,27 +36,27 @@ namespace CarAuction.ViewModels
 
         public void SetForSale()
         {
-            main.SetViewModel(new SetForSaleViewModel(main, user, new Vehicle()));
+            main.SetViewModel(new SetForSaleViewModel(main, userProfileView, new Vehicle(), new Auction(), user ));
         }
 
         public void MyProfile()
         {
-            main.SetViewModel(new MyProfileViewModel(main, user));
+            main.SetViewModel(new MyProfileViewModel(main, userProfileView, user));
         }
 
         public void BidHistory()
         {
-            main.SetViewModel(new BidHistoryViewModel(main, user));
+            main.SetViewModel(new BidHistoryViewModel(main, userProfileView, user));
         }
 
         public void BuyerOfAuction()
         {
-            main.SetViewModel(new BuyerOfAuctionViewModel(main, user));
+            main.SetViewModel(new BuyerOfAuctionViewModel(main, userProfileView, user));
         }
 
         public void SellerOfAuction()
         {
-            main.SetViewModel(new SellerOfAuctionViewModel(main, user));
+            main.SetViewModel(new SellerOfAuctionViewModel(main, userProfileView, user));
         }
     }
 }

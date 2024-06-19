@@ -49,12 +49,12 @@ namespace CarAuction.ViewModels
         }
 
 
-        MyProfileViewModel profile = new();
+        MyProfileViewModel userProfileView = new();
         public void Handlers()
         {
             if (Database.Login(user.Username, user.Password))
             {
-                main.SetViewModel(new HomePageViewModel(main, profile));
+                main.SetViewModel(new HomePageViewModel(main, userProfileView, user));
             }
             else
             {

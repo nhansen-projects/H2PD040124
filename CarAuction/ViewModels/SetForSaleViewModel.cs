@@ -16,13 +16,18 @@ namespace CarAuction.ViewModels
     public class SetForSaleViewModel : ViewModelBase
     {
         private MainWindowViewModel main;
-        private MyProfileViewModel user;
+        private MyProfileViewModel userProfileView;
         private Vehicle vehicle;
-        public SetForSaleViewModel(MainWindowViewModel main, MyProfileViewModel user, Vehicle vehicle)
+        private Auction auction;
+        private User user;
+        
+        public SetForSaleViewModel(MainWindowViewModel main, MyProfileViewModel userProfileView, Vehicle vehicle, Auction auction, User user)
         {
             this.main = main;
-            this.user = user;
+            this.userProfileView = userProfileView;
             this.vehicle = vehicle;
+            this.auction = auction;
+            this.user = user;
         }
 
         public SetForSaleViewModel()
@@ -35,7 +40,16 @@ namespace CarAuction.ViewModels
             get { return vehicle; }
             set { vehicle = value; }
         }
-        
+        public Auction Auction
+        {
+            get { return auction; }
+            set { auction = value; }
+        }
+        public User User
+        {
+            get { return user; }
+            set { user = value; }
+        }
 
         /*
          * 
@@ -262,7 +276,10 @@ namespace CarAuction.ViewModels
             //List<string> CreateSaleList = new List<string> { SaleName, SaleMilage, SaleRegnr, ConYear, SaleStarting, CloseAuction, vehicleType, SaleHeight, SaleLength, SaleWeight, SaleEngineSize, TowBar };
             
             main.Queries.InsertVehicle(vehicle);
-            main.SetViewModel(new HomePageViewModel(main, user));
+            auction.VehicleId = vehicle.Id;
+            auction.SellerId = user.Id;
+            main.Queries.InsertDataAuction(auction);
+            main.SetViewModel(new HomePageViewModel(main, userProfileView, user));
         }
 
 
@@ -270,7 +287,7 @@ namespace CarAuction.ViewModels
 
         public void CancelBtn()
         {
-            main.SetViewModel(new HomePageViewModel(main, user));
+            main.SetViewModel(new HomePageViewModel(main, userProfileView, user));
         }
 
     }
