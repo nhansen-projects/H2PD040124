@@ -16,15 +16,17 @@ namespace CarAuction.ConnectionHandlers
             DataSource = "docker.data.techcollege.dk,20002",
             UserID = "sa",
             IntegratedSecurity = false,
-            Password = "H2PD040124_Gruppe2"
+            Password = "H2PD040124_Gruppe2",
+            TrustServerCertificate = true
         };
 
         public static string ConnectionString { get; set; } = _builder.ConnectionString;
 
-        private static SqlConnection Connection => new SqlConnection(ConnectionString);
+        private static SqlConnection Connection; // => new SqlConnection(ConnectionString);
 
         public static void OpenConnection()
         {
+            Connection = new SqlConnection(ConnectionString);
             Connection.Open();
         }
 
@@ -34,7 +36,7 @@ namespace CarAuction.ConnectionHandlers
         }
 
         public static void Insert(string table, string[] columns, string[] values)
-        {
+        {//Problemet er at alt de smider ind i values ikke kommer i quotation marks
             string query = $"INSERT INTO {table} ({string.Join(", ", columns)}) VALUES ({string.Join(", ", values)});";
             SqlCommand command = new SqlCommand(query, Connection);
             command.ExecuteNonQuery();

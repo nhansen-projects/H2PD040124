@@ -37,27 +37,27 @@
 		<TextBlock Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="14">Starting Bid:</TextBlock>
 		<TextBlock Grid.Row="6" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="14">Close Auction:</TextBlock>
 		<TextBlock Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="14">Vehicle Type:</TextBlock>
-		<TextBlock Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="14">Height:</TextBlock>
-		<TextBlock Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="14">Length:</TextBlock>
-		<TextBlock Grid.Row="4" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="14">Weight:</TextBlock>
+		<TextBlock Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="14">DriversLicenseType:</TextBlock>
+		<TextBlock Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="14">KmPerLiter:</TextBlock>
+		<TextBlock Grid.Row="4" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="14">FuelType:</TextBlock>
 		<TextBlock Grid.Row="5" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="14">Engine Size:</TextBlock>
 		<TextBlock Grid.Row="6" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="14">Tow bar:</TextBlock>
 
 
 		<!--TEXTBOX for Name, Milage, Regnr & Starting Bid-->
-		<TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding SaleName}"></TextBox>
-		<TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding SaleMilage}"></TextBox>
-		<TextBox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding SaleRegnr}"></TextBox>
+		<TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding Vehicle.Name}"></TextBox>
+		<TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding Vehicle.Km}"></TextBox>
+		<TextBox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding Vehicle.Regnr}"></TextBox>
 		<TextBox Grid.Row="5" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding SaleStarting}"></TextBox>
-		<TextBox Grid.Row="2" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding SaleHeight}"></TextBox>
-		<TextBox Grid.Row="3" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding SaleLength}"></TextBox>
-		<TextBox Grid.Row="4" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding SaleWeight}"></TextBox>
-		<TextBox Grid.Row="5" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding SaleEngineSize}"></TextBox>
+		<TextBox Grid.Row="2" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding Vehicle.DriversLicenseType }"></TextBox>
+		<TextBox Grid.Row="3" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding Vehicle.KmPerLiter}"></TextBox>
+		<TextBox Grid.Row="4" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding Vehicle.FuelType}"></TextBox>
+		<TextBox Grid.Row="5" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding Vehicle.EngineSize}"></TextBox>
 
 
 
 		<!--Year-->
-		<DatePicker Grid.Column="1" Grid.Row="4" DayVisible="False" MonthVisible="False" YearVisible="True" SelectedDate="{Binding Year}"></DatePicker>
+		<DatePicker Grid.Column="1" Grid.Row="4" DayVisible="False" MonthVisible="False" YearVisible="True" SelectedDate="{Binding Vehicle.Year}"></DatePicker>
 
 		<!--Close Auction-->
 		<DatePicker Grid.Column="1" Grid.Row="6" SelectedDate="{Binding CloseAuction}"></DatePicker>
@@ -76,8 +76,7 @@
 		</ComboBox>
 
 		<!--Tow bar-->
-		<RadioButton Grid.Column="3" Grid.Row="6" HorizontalAlignment="Left" Content="Yes" Command="{Binding HasTowBar}" Foreground="White"></RadioButton>
-		<RadioButton Grid.Column="3" Grid.Row="6" HorizontalAlignment="Right" Content="No" Command="{Binding NoTowBar}" Foreground="White"></RadioButton>
+		<CheckBox Grid.Column="3" Grid.Row="6" HorizontalAlignment="Left" Content="Yes" IsChecked="{Binding Vehicle.TowingHook}" Foreground="White"></CheckBox>
 
 		<!--Create Auction Btn-->
 		<Button Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="1" Command="{Binding CreateAuctionBtn}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="Gray" Foreground="White" Content="Create Auction" />

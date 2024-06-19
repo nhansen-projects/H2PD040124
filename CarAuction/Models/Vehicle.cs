@@ -29,6 +29,21 @@ public class Vehicle
         _energyType = GetEnergyClass();
     }
 
+    public Vehicle()
+    {
+        _id = 0;
+        _name = string.Empty;
+        _km = 0;
+        _regnr = string.Empty;
+        _year = 0;
+        _towingHook = true;
+        _driversLicenseType = string.Empty;
+        _engineSize = 0;
+        _kmPerLiter = 0;
+        _fuelType = string.Empty;
+        _energyType = GetEnergyClass();
+    }
+
     public int Id
     {
         get => _id;
@@ -83,7 +98,7 @@ public class Vehicle
     {
         get => _energyType;
     }
-    private string GetEnergyClass()
+    public string GetEnergyClass()
     {
         if (FuelType == "Hydrogen" || FuelType == "Electricity") return "A";
 

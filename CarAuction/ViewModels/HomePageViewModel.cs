@@ -31,7 +31,7 @@ namespace CarAuction.ViewModels
 
         public void SetForSale()
         {
-            main.SetViewModel(new SetForSaleViewModel(main, user));
+            main.SetViewModel(new SetForSaleViewModel(main, user, new Vehicle()));
         }
 
         public void MyProfile()

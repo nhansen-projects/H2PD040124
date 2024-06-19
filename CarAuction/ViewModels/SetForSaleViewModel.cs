@@ -17,17 +17,32 @@ namespace CarAuction.ViewModels
     {
         private MainWindowViewModel main;
         private MyProfileViewModel user;
-
-        public SetForSaleViewModel(MainWindowViewModel main, MyProfileViewModel user)
+        private Vehicle vehicle;
+        public SetForSaleViewModel(MainWindowViewModel main, MyProfileViewModel user, Vehicle vehicle)
         {
             this.main = main;
             this.user = user;
+            this.vehicle = vehicle;
         }
 
         public SetForSaleViewModel()
         {
 
-        } 
+        }
+
+        public Vehicle Vehicle
+        {
+            get { return vehicle; }
+            set { vehicle = value; }
+        }
+        
+
+        /*
+         * 
+         * 
+         * 
+         * 
+        public string
 
         private string _saleName;
         public string SaleName
@@ -181,22 +196,7 @@ namespace CarAuction.ViewModels
         }
 
 
-        public string ConYear;
-        public void ConvertToYear()
-        {
-            string ShowYear = @"\b\d{4}\b";
 
-            Match match = Regex.Match(Year, ShowYear);
-            if (match.Success)
-            {
-                string year = match.Value;
-                ConYear = year;
-            }
-            else
-            {
-
-            }
-        }
 
         private string _closeAuction;
         public string CloseAuction
@@ -207,13 +207,61 @@ namespace CarAuction.ViewModels
                 this.RaiseAndSetIfChanged(ref _closeAuction, value, nameof(CloseAuction));
             }
         }
+        */
+
+        /*
+        public string ConYear;
+        public void ConvertToYear()
+        {
+            string ShowYear = @"\b\d{4}\b";
+
+            Match match = Regex.Match(vehicle.Year, ShowYear);
+            if (match.Success)
+            {
+                string year = match.Value;
+                ConYear = year;
+            }
+            else
+            {
+
+            }
+        }
+        */
 
 
+        /*
+        public void TypeOfVehicle()
+        {
+            switch (VehicleTypeIndex)
+            {
+                case "0":
+                    vehicleType = "So";
+                    break;
+                case "1":
+                    vehicleType = "Truck";
+                    break;
+                case "2":
+                    vehicleType = "Car";
+                    break;
+                case "3":
+                    vehicleType = "Bike";
+                    break;
+                case "4":
+                    vehicleType = "Bus";
+                    break;
+                case "5":
+                    vehicle = "ko";
+                    break;
+            }
+        }
+        */
         public void CreateAuctionBtn()
         {
-            TypeOfVehicle();
-            ConvertToYear();
-            List<string> CreateSaleList = new List<string> { SaleName, SaleMilage, SaleRegnr, ConYear, SaleStarting, CloseAuction, vehicleType, SaleHeight, SaleLength, SaleWeight, SaleEngineSize, TowBar };
+            //TypeOfVehicle();
+            //ConvertToYear();
+            //List<string> CreateSaleList = new List<string> { SaleName, SaleMilage, SaleRegnr, ConYear, SaleStarting, CloseAuction, vehicleType, SaleHeight, SaleLength, SaleWeight, SaleEngineSize, TowBar };
+            
+            main.Queries.InsertVehicle(vehicle);
             main.SetViewModel(new HomePageViewModel(main, user));
         }
 
