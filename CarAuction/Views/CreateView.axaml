@@ -39,7 +39,7 @@
 		<!-- TEXTBOXES FOR USER INPUT -->
 		<TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding User.Username}"></TextBox>
 		<TextBox PasswordChar="*" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding User.Password}"></TextBox>
-		<TextBox PasswordChar="*" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding PaaswordAgain}"></TextBox>
+		<TextBox PasswordChar="*" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding PasswordAgain}"></TextBox>
 
 
 		<!-- CREATE USER BUTTON -->

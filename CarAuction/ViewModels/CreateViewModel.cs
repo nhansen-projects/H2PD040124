@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CarAuction.Models;
+using CarAuction.ConnectionHandlers;
 
 namespace CarAuction.ViewModels
 {
@@ -27,35 +28,35 @@ namespace CarAuction.ViewModels
             get { return user; }
             set { user = value; }
         }
-        
-        private string _UserNameInput;
-        public string UserNameInput
+
+        /*        private string _UserNameInput;
+                public string UserNameInput
+                {
+                    get => _UserNameInput;
+                    set
+                    {
+                        this.RaiseAndSetIfChanged(ref _UserNameInput, value, nameof(UserNameInput));
+                    }
+                }
+
+                private string _PasswordInput;
+                public string PasswordInput
+                {
+                    get => _PasswordInput;
+                    set
+                    {
+                        this.RaiseAndSetIfChanged(ref _PasswordInput, value, nameof(PasswordInput));
+                    }
+                }*/
+
+
+        private string _passwordAgain;
+        public string PasswordAgain
         {
-            get => _UserNameInput;
+            get => _passwordAgain;
             set
             {
-                this.RaiseAndSetIfChanged(ref _UserNameInput, value, nameof(UserNameInput));
-            }
-        }
-
-        private string _PasswordInput;
-        public string PasswordInput
-        {
-            get => _PasswordInput;
-            set
-            {
-                this.RaiseAndSetIfChanged(ref _PasswordInput, value, nameof(PasswordInput));
-            }
-        }
-
-
-        private string _PasswordAgainInput;
-        public string PasswordAgainInput
-        {
-            get => _PasswordAgainInput;
-            set
-            {
-                this.RaiseAndSetIfChanged(ref _PasswordAgainInput, value, nameof(PasswordAgainInput));
+                this.RaiseAndSetIfChanged(ref _passwordAgain, value, nameof(PasswordAgain));
             }
         }
 
@@ -83,14 +84,15 @@ namespace CarAuction.ViewModels
 
 
         public void CreateUser()
-        {                                                       
-            if (PasswordInput != PasswordAgainInput || UserNameInput == Error)//Database.UsernameExist istedet for Error)
+        {
+            if (User.Password != PasswordAgain || User.Username == Error)//Database.UsernameExist istedet for Error)
             {
                 Error = "[Username Is Already In Use] or [Password Does Not Match]";
             }
             else
             {
                 Error = "Your Account Was Created";
+                Database.NewUser(User);
                 main.SetViewModel(new LoginViewModel(main));
             }
 

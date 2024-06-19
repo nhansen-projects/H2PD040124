@@ -91,7 +91,7 @@ namespace CarAuction.ConnectionHandlers
 
         public static void NewVehicle(Vehicle vehicle)
         {
-            Connection.Open();
+            OpenConnection();
             string[] columns = new string[] { "Name", "Km", "Regnr", "Year", "TowingHook", "DriverLicenseType", "EngineSize", "KmPerLiter", "FuelType", "EnergyClass" };
 
             string query = $"INSERT INTO [Vehicle] ({string.Join(", ", columns)}) VALUES (@Name, @Km, @Regnr, @Year, @TowingHook, @DriverLicenseType, @EngineSize, @KmPerLiter, @FuelType, @EnergyClass);";
@@ -108,14 +108,14 @@ namespace CarAuction.ConnectionHandlers
             command.Parameters.AddWithValue("@FuelType", vehicle.FuelType);
             command.Parameters.AddWithValue("@EnergyClass", vehicle.GetEnergyClass());
             command.ExecuteNonQuery();
-            Connection.Close();
+            CloseConnection();
         }
         public static void NewUser(User user)
         {
-            Connection.Open();
+            OpenConnection();
             string[] columns = new string[] { "Username", "Password", "PostalCode" };
 
-            string query = $"INSERT INTO [Vehicle] ({string.Join(", ", columns)}) VALUES (@Username, @Password, @PostalCode);";
+            string query = $"INSERT INTO [User] ({string.Join(", ", columns)}) VALUES (@Username, @Password, @PostalCode);";
             SqlCommand command = new SqlCommand(query, Connection);
 
             command.Parameters.AddWithValue("@Username", user.Username);
@@ -123,11 +123,7 @@ namespace CarAuction.ConnectionHandlers
             command.Parameters.AddWithValue("@PostalCode", user.PostalCode);
             command.ExecuteNonQuery();
 
-            int.TryParse(GetScopeIdentity(), out int id);
-
-            user.Id = id;
-
-            Connection.Close();
+            CloseConnection();
         }
     }
 

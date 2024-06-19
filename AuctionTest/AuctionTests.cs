@@ -205,9 +205,6 @@ namespace AuctionTest
 
                 Database.NewUser(newUser);
 
-                Database.OpenConnection();
-                Database.Select("User", new string[] { "Id", "Username", "Password", "PostalCode" }, $"Id = {newUser.Id}");
-                Database.CloseConnection();
             }
         }
 
