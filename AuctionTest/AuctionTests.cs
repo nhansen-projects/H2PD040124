@@ -1,6 +1,5 @@
 using CarAuction.Models;
 using Microsoft.Data.SqlClient;
-using Xunit;
 using Moq;
 using System.Data;
 using Microsoft.Data.SqlClient;
@@ -125,18 +124,15 @@ namespace AuctionTest
             [Fact]
             public void Insert_WithValidParameters_ExecutesNonQuery()
             {
-                // Arrange
                 var mockConnection = new Mock<SqlConnection>();
                 var mockCommand = new Mock<SqlCommand>();
                 mockCommand.Setup(m => m.ExecuteNonQuery()).Returns(1);
                 mockConnection.Setup(m => m.CreateCommand()).Returns(mockCommand.Object);
                 Database.ConnectionString = mockConnection.Object.ConnectionString;
 
-                // Act
                 Database.Insert("TestTable", new string[] { "Column1", "Column2" },
                     new string[] { "Value1", "Value2" });
 
-                // Assert
                 mockCommand.Verify(m => m.ExecuteNonQuery(), Times.Once);
             }
 

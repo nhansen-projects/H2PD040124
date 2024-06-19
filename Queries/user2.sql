@@ -1,0 +1,2 @@
+CREATE USER Simon FOR LOGIN Simon;  
+GO  

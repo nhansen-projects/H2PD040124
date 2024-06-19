@@ -15,6 +15,7 @@ CREATE TABLE [Auction] (
 
 ALTER TABLE Auction
 alter column ID int not null;
+
 ALTER TABLE Auction
 ADD PRIMARY KEY (ID);
 
@@ -93,7 +94,7 @@ CREATE TABLE [HeavyVehicle] (
 
 CREATE TABLE [PassengerVehicle] ( 
 
-  [ID] INT not null primary key, 
+  [ID] INT IDENTITY(1,1), 
 
   [VehicleId] INT NOT NULL
 ); 
@@ -158,7 +159,7 @@ ALTER TABLE [CommercialVehicle]
 ADD FOREIGN KEY ([PassengerVehicleID]) REFERENCES [PassengerVehicle]([ID]);
 
 ALTER TABLE [Truck]
-ADD FOREIGN KEY ([HeavyVehicleId]) REFERENCES [HeavyVehicleID]([ID]); 
+ADD FOREIGN KEY ([HeavyVehicleId]) REFERENCES [HeavyVehicle]([HeavyVehicleID]); 
 
 ALTER TABLE [HeavyVehicle]
 ADD FOREIGN KEY ([VehicleID]) REFERENCES [Vehicle]([ID]);
@@ -167,4 +168,26 @@ ALTER TABLE [Bus]
 ADD FOREIGN KEY ([HeavyVehicleID]) REFERENCES HeavyVehicle([HeavyVehicleId]);
 
 
+____
 
+
+alter table CommercialVehicle
+ADD PRIMARY KEY (ID)
+
+alter table PrivateCustomer
+ADD PRIMARY KEY (ID)
+
+alter table PrivateVehicle
+ADD PRIMARY KEY (ID)
+
+alter table Truck
+ADD PRIMARY KEY (ID)
+
+alter table [User]
+ADD PRIMARY KEY (ID)
+
+alter table Vehicle
+ADD PRIMARY KEY (ID)
+
+alter table HeavyVehicle
+ADD PRIMARY KEY (HeavyVehicleID)
