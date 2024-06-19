@@ -13,16 +13,16 @@ public class Database_Queries
         // string[] values = new string[] { { auctionId }, { vehicleId }, { sellerId }, { buyerId }, { minimumPrice } };
         // Database.Insert(table, columns, values);
     }
-
+    
+    
+    // usually wouldn't use this, but due to structural changes, it's become technical debt
+    // for future reference, change database class to non-static to instantiate it in mainVeiwModel
     public void InsertVehicle(Vehicle vehicle)
     {
-        Database.OpenConnection();
-        /*        string table = "Vehicle";
-                string[] columns = new string[] { "Name", "Km", "Regnr", "Year", "TowingHook", "DriversLicenseType", "EngineSize", "KmPerLiter", "FuelType", "EnergyClass" };
-                string[] values = new string[] { vehicle.Name ,  vehicle.Km.ToString() , vehicle.Regnr,  vehicle.Year.ToString(), vehicle.TowingHook.ToString(), vehicle.DriversLicenseType, vehicle.EngineSize.ToString(), vehicle.KmPerLiter.ToString(), vehicle.FuelType, vehicle.GetEnergyClass() };
-                Database.Insert(table, columns, values);
-        */
         Database.NewVehicle(vehicle);
-        Database.CloseConnection();
+    }
+    public void InsertUser(User user)
+    {
+        Database.NewUser(user);
     }
 }

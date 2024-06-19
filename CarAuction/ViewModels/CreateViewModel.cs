@@ -4,22 +4,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CarAuction.Models;
 
 namespace CarAuction.ViewModels
 {
     public class CreateViewModel : ViewModelBase
     {
         private MainWindowViewModel main;
-        public CreateViewModel(MainWindowViewModel main)
+        private User user;
+        public CreateViewModel(MainWindowViewModel main, User user)
         {
             this.main = main;
+            this.user = user;
         }
 
         public CreateViewModel()
         {
 
         }
-
+        public User User
+        {
+            get { return user; }
+            set { user = value; }
+        }
+        
         private string _UserNameInput;
         public string UserNameInput
         {

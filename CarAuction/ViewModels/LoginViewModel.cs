@@ -22,7 +22,7 @@ namespace CarAuction.ViewModels
 
         public void CreateUser()
         {
-            main.SetViewModel(new CreateViewModel(main));
+            main.SetViewModel(new CreateViewModel(main, new User()));
         }
 
 
