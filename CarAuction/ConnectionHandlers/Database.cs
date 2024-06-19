@@ -125,7 +125,20 @@ namespace CarAuction.ConnectionHandlers
 
             CloseConnection();
         }
+        public static bool Login(string username, string password)
+        {
+            OpenConnection();
+            string query = $"SELECT * FROM [User] WHERE Username = @Username AND Password = @Password;";
+            SqlCommand command = new SqlCommand(query, Connection);
+
+            command.Parameters.AddWithValue("@Username", username);
+            command.Parameters.AddWithValue("@Password", password);
+
+            SqlDataReader reader = command.ExecuteReader();
+            bool result = reader.HasRows;
+            CloseConnection();
+            return result;
+        }
     }
 
-    // 
 }

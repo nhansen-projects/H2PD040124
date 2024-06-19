@@ -33,8 +33,8 @@
 		<TextBlock Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right"  VerticalAlignment="Center" Foreground="White">Pasword: </TextBlock>
 
 		<!--TEXTBOX-->
-		<TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding UserNameInput}"></TextBox>
-		<TextBox PasswordChar="*" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding PasswordInput}"></TextBox>
+		<TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding User.Username}"></TextBox>
+		<TextBox PasswordChar="*" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding User.Password}"></TextBox>
 
 		<!--BUTTON-->
 		<Button Grid.Row="4" Grid.Column="1" Command="{Binding HomePage}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Background="Gray" Foreground="White">Login</Button>
@@ -49,7 +49,7 @@
 		   Foreground="Gray"
 		   Text="{Binding Error}"
 		></TextBlock>
-		
-		
-	</Grid>	
+
+
+	</Grid>
 </UserControl>

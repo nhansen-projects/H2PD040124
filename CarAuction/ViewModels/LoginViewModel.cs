@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CarAuction.ConnectionHandlers;
 using CarAuction.Models;
 using ReactiveUI;
 
@@ -10,6 +11,7 @@ namespace CarAuction.ViewModels
     public class LoginViewModel : ViewModelBase
     {
         private MainWindowViewModel main;
+        private User user = new User();
         public LoginViewModel(MainWindowViewModel main)
         {
             this.main = main;
@@ -18,6 +20,11 @@ namespace CarAuction.ViewModels
         public LoginViewModel()
         {
 
+        }
+        public User User
+        {
+            get { return user; }
+            set { user = value; }
         }
 
         public void CreateUser()
@@ -41,42 +48,17 @@ namespace CarAuction.ViewModels
             }
         }
 
-        private string _UserNameInput;
-        public string UserNameInput
-        {
-            get => _UserNameInput;
-            set
-            {
-                this.RaiseAndSetIfChanged(ref _UserNameInput, value, nameof(UserNameInput));
-            }
-        }
 
-        private string _PasswordInput;
-        public string PasswordInput
-        {
-            get => _PasswordInput;
-            set
-            {
-                this.RaiseAndSetIfChanged(ref _PasswordInput, value, nameof(PasswordInput));
-            } 
-        }
-
-        MyProfileViewModel user = new();
+        MyProfileViewModel profile = new();
         public void Handlers()
         {
-            //Check om det findes
-            string DummyUSERNAME = "DUMMYDATA";
-            string DummyPASSWORD = "DUMMYDATA";
-
-            if (UserNameInput == DummyUSERNAME && PasswordInput == DummyPASSWORD)
+            if (Database.Login(user.Username, user.Password))
             {
-                main.SetViewModel(new HomePageViewModel(main, user));
+                main.SetViewModel(new HomePageViewModel(main, profile));
             }
             else
             {
                 Error = "Invalid Username Or Password";
-                //Slettes når databasen er koblet til
-                main.SetViewModel(new HomePageViewModel(main, user));
             }
         }
     }
