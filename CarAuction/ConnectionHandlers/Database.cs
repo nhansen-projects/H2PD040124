@@ -147,18 +147,13 @@ namespace CarAuction.ConnectionHandlers
             Connection.Open();
             string[] columns = new string[] { "VehicleID", "SellerUserID", "BuyerUserID", "MinimumPrice" };
 
-            string query = $"INSERT INTO [Vehicle] ({string.Join(", ", columns)}) VALUES (@Username, @Password, @PostalCode);";
+            string query = $"INSERT INTO [Vehicle] ({string.Join(", ", columns)}) VALUES (@Username, @Password, @PostalCode); Select SCOPE_IDENTITY();";
             SqlCommand command = new SqlCommand(query, Connection);
             command.Parameters.AddWithValue("@VehicleID", auction.VehicleId);
             command.Parameters.AddWithValue("@SellerUserID", auction.SellerId);
             command.Parameters.AddWithValue("@BuyerUserID", auction.BuyerId);
             command.Parameters.AddWithValue("@MinimumPrice", auction.MinimumPrice);
-            command.ExecuteNonQuery();
-
-            int.TryParse(GetScopeIdentity(), out int id);
-
-            auction.BuyerId = id;
-            
+            auction.AuctionId = Convert.ToInt32(command.ExecuteScalar());
             Connection.Close();
         }
     }

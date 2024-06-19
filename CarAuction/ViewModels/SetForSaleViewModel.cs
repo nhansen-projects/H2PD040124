@@ -279,7 +279,7 @@ namespace CarAuction.ViewModels
             auction.VehicleId = vehicle.Id;
             auction.SellerId = user.Id;
             main.Queries.InsertDataAuction(auction);
-            main.SetViewModel(new HomePageViewModel(main, userProfileView));
+            main.SetViewModel(new HomePageViewModel(main, userProfileView, user));
         }
 
 
@@ -287,7 +287,7 @@ namespace CarAuction.ViewModels
 
         public void CancelBtn()
         {
-            main.SetViewModel(new HomePageViewModel(main, userProfileView));
+            main.SetViewModel(new HomePageViewModel(main, userProfileView, user));
         }
 
     }

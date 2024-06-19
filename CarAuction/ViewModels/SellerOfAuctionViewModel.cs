@@ -11,15 +11,15 @@ namespace CarAuction.ViewModels
     public class SellerOfAuctionViewModel : ViewModelBase
     {
         private MainWindowViewModel main;
-        private MyProfileViewModel user;
+        private MyProfileViewModel userProfileView;
         private Vehicle vehicle;
-        private Auction auction;
+        private User user;
         
-        public SellerOfAuctionViewModel(MainWindowViewModel main, MyProfileViewModel user)
+        public SellerOfAuctionViewModel(MainWindowViewModel main, MyProfileViewModel userProfileView, User user)
         {
             this.main = main;
+            this.userProfileView = userProfileView;
             this.user = user;
-            this.auction = auction;
         }
 
         public SellerOfAuctionViewModel()
@@ -52,7 +52,7 @@ namespace CarAuction.ViewModels
 
         public void BackBtn()
         {
-            main.SetViewModel(new HomePageViewModel(main, user));
+            main.SetViewModel(new HomePageViewModel(main, userProfileView, user));
         }
 
 

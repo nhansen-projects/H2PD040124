@@ -40,22 +40,22 @@ namespace CarAuction.ViewModels
 
         public void MyProfile()
         {
-            main.SetViewModel(new MyProfileViewModel(main, userProfileView));
+            main.SetViewModel(new MyProfileViewModel(main, userProfileView, user));
         }
 
         public void BidHistory()
         {
-            main.SetViewModel(new BidHistoryViewModel(main, userProfileView));
+            main.SetViewModel(new BidHistoryViewModel(main, userProfileView, user));
         }
 
         public void BuyerOfAuction()
         {
-            main.SetViewModel(new BuyerOfAuctionViewModel(main, userProfileView));
+            main.SetViewModel(new BuyerOfAuctionViewModel(main, userProfileView, user));
         }
 
         public void SellerOfAuction()
         {
-            main.SetViewModel(new SellerOfAuctionViewModel(main, userProfileView));
+            main.SetViewModel(new SellerOfAuctionViewModel(main, userProfileView, user));
         }
     }
 }
