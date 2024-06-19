@@ -66,6 +66,10 @@
               "target": "Package",
               "version": "[0.10.18, )"
             },
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[5.2.1, )"
+            },
             "XamlNameReferenceGenerator": {
               "target": "Package",
               "version": "[1.6.1, )"

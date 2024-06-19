@@ -6,7 +6,7 @@
 			 x:CompileBindings="False"
              x:Class="CarAuction.Views.HomePageView">
 
-	
+
 	<Grid ShowGridLines="false" Background="#333333">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition></ColumnDefinition>
@@ -94,5 +94,5 @@
 
 
 	</Grid>
-	
+
 </UserControl>

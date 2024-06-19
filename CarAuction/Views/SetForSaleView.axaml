@@ -6,6 +6,7 @@
 			 x:CompileBindings="False"
              x:Class="CarAuction.Views.SetForSaleView">
 
+
 	<Grid ShowGridLines="false" Background="#333333">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition></ColumnDefinition>
@@ -71,9 +72,9 @@
 			<ComboBoxItem>Bus</ComboBoxItem>
 			<ComboBoxItem>Private</ComboBoxItem>
 			<ComboBoxItem>Commercial</ComboBoxItem>
-			<ComboBoxItem>PassengerVehicle</ComboBoxItem>		
+			<ComboBoxItem>PassengerVehicle</ComboBoxItem>
 		</ComboBox>
-				
+
 		<!--Tow bar-->
 		<RadioButton Grid.Column="3" Grid.Row="6" HorizontalAlignment="Left" Content="Yes" Command="{Binding HasTowBar}" Foreground="White"></RadioButton>
 		<RadioButton Grid.Column="3" Grid.Row="6" HorizontalAlignment="Right" Content="No" Command="{Binding NoTowBar}" Foreground="White"></RadioButton>

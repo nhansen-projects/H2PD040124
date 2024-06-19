@@ -52,8 +52,8 @@
 		<Button Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Right" Command="{Binding ChangeBalanceBtn}"  VerticalAlignment="Center" Background="Gray" Foreground="White" Content="Change Balance" />
 		<TextBox Grid.Row="3" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="WhiteSmoke" Text="{Binding NewBalance}"></TextBox>
 		
-		<TextBlock Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Text="{Binding MyAuctions}" FontSize="14">-MyAuc-</TextBlock>
-		<TextBlock Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Text="{Binding AuctionsWon}" FontSize="14">-AucWon-</TextBlock>
+		<TextBlock Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Text="{Binding MyAuctions}" FontSize="14"></TextBlock>
+		<TextBlock Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Text="{Binding AuctionsWon}" FontSize="14"></TextBlock>
 
 
 

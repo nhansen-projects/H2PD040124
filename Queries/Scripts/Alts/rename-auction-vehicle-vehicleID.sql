@@ -1,0 +1,1 @@
+EXEC sp_rename '[Auction].[VehicleID]',  'VehicleID', 'COLUMN'; 

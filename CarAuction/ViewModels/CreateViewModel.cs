@@ -6,8 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CarAuction.ViewModels
-{ 
-    internal class CreateViewModel : ViewModelBase
+{
+    public class CreateViewModel : ViewModelBase
     {
         private MainWindowViewModel main;
         public CreateViewModel(MainWindowViewModel main)
