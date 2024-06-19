@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using CarAuction.Models;
 using Microsoft.Data.SqlClient;
 
 // get company from ID
@@ -17,7 +18,8 @@ namespace CarAuction.ConnectionHandlers
             UserID = "sa",
             IntegratedSecurity = false,
             Password = "H2PD040124_Gruppe2",
-            TrustServerCertificate = true
+            TrustServerCertificate = true,
+            InitialCatalog = "AuctionDB"
         };
 
         public static string ConnectionString { get; set; } = _builder.ConnectionString;
@@ -70,16 +72,36 @@ namespace CarAuction.ConnectionHandlers
             SqlCommand command = new SqlCommand(query, Connection);
             return command.ExecuteReader();
         }
-        
+
         public static void UserConnection(string username, string password)
         {
             string query =
                 $"SELECT role from tbl_login WHERE Username = {username} and password = {password}";
             SqlCommand command = new SqlCommand(query, Connection);
             command.ExecuteReader();
-            
+
+        }
+
+        public static void NewVehicle(Vehicle vehicle)
+        {
+            string[] columns = new string[] { "Name", "Km", "Regnr", "Year", "TowingHook", "DriverLicenseType", "EngineSize", "KmPerLiter", "FuelType", "EnergyClass" };
+
+            string query = $"INSERT INTO [Vehicle] ({string.Join(", ", columns)}) VALUES (@Name, @Km, @Regnr, @Year, @TowingHook, @DriverLicenseType, @EngineSize, @KmPerLiter, @FuelType, @EnergyClass);";
+            SqlCommand command = new SqlCommand(query, Connection);
+
+            command.Parameters.AddWithValue("@Name", vehicle.Name);
+            command.Parameters.AddWithValue("@Km", vehicle.Km);
+            command.Parameters.AddWithValue("@Regnr", vehicle.Regnr);
+            command.Parameters.AddWithValue("@Year", vehicle.Year);
+            command.Parameters.AddWithValue("@TowingHook", vehicle.TowingHook);
+            command.Parameters.AddWithValue("@DriverLicenseType", vehicle.DriversLicenseType);
+            command.Parameters.AddWithValue("@EngineSize", vehicle.EngineSize);
+            command.Parameters.AddWithValue("@KmPerLiter", vehicle.KmPerLiter);
+            command.Parameters.AddWithValue("@FuelType", vehicle.FuelType);
+            command.Parameters.AddWithValue("@EnergyClass", vehicle.GetEnergyClass());
+            command.ExecuteNonQuery();
         }
     }
-    
+
     // 
 }
