@@ -95,7 +95,7 @@ namespace CarAuction.ConnectionHandlers
             OpenConnection();
             string[] columns = new string[] { "Name", "Km", "Regnr", "Year", "TowingHook", "DriverLicenseType", "EngineSize", "KmPerLiter", "FuelType", "EnergyClass" };
 
-            string query = $"INSERT INTO [Vehicle] ({string.Join(", ", columns)}) VALUES (@Name, @Km, @Regnr, @Year, @TowingHook, @DriverLicenseType, @EngineSize, @KmPerLiter, @FuelType, @EnergyClass);";
+            string query = $"INSERT INTO [Vehicle] ({string.Join(", ", columns)}) VALUES (@Name, @Km, @Regnr, @Year, @TowingHook, @DriverLicenseType, @EngineSize, @KmPerLiter, @FuelType, @EnergyClass); Select SCOPE_IDENTITY();";
             SqlCommand command = new SqlCommand(query, Connection);
 
             command.Parameters.AddWithValue("@Name", vehicle.Name);
@@ -108,7 +108,7 @@ namespace CarAuction.ConnectionHandlers
             command.Parameters.AddWithValue("@KmPerLiter", vehicle.KmPerLiter);
             command.Parameters.AddWithValue("@FuelType", vehicle.FuelType);
             command.Parameters.AddWithValue("@EnergyClass", vehicle.GetEnergyClass());
-            command.ExecuteNonQuery();
+            vehicle.Id = Convert.ToInt32(command.ExecuteScalar());
             CloseConnection();
         }
         public static void NewUser(User user)
