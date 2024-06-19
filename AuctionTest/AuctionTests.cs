@@ -204,7 +204,17 @@ namespace AuctionTest
                 newUser.PostalCode = "9000";
 
                 Database.NewUser(newUser);
+                Assert.True(newUser.Id > 0);
 
+                Database.OpenConnection();
+
+                /*SqlDataReader reader = Database.Select("User", new string[] { "id" }, $"id = {newUser.Id}");
+                reader.Read();
+                Assert.Equal(newUser.Id, reader.GetInt32(0));
+                reader.Close();*/
+
+                Database.Delete("User", $"id = {newUser.Id}");
+                Database.CloseConnection();
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using CarAuction.Models;
 using Microsoft.Data.SqlClient;
 
@@ -36,12 +37,12 @@ namespace CarAuction.ConnectionHandlers
         {
             Connection.Close();
         }
-        public static string GetScopeIdentity()
+        public static int GetScopeIdentity(string table)
         {
-            string query = "SELECT SCOPE_IDENTITY();";
+            string query = $"SELECT SCOPE_IDENTITY() From [{table}];";
             SqlCommand command = new SqlCommand(query, Connection);
-
-            return command.ExecuteReader()[0].ToString();
+            int result = Convert.ToInt32(command.ExecuteScalar());
+            return result;
         }
 
         public static void Insert(string table, string[] columns, string[] values)
@@ -61,7 +62,7 @@ namespace CarAuction.ConnectionHandlers
 
         public static void Delete(string table, string condition)
         {
-            string query = $"DELETE FROM {table} WHERE {condition};";
+            string query = $"DELETE FROM [{table}] WHERE {condition};";
             SqlCommand command = new SqlCommand(query, Connection);
             command.ExecuteNonQuery();
         }
@@ -115,13 +116,15 @@ namespace CarAuction.ConnectionHandlers
             OpenConnection();
             string[] columns = new string[] { "Username", "Password", "PostalCode" };
 
-            string query = $"INSERT INTO [User] ({string.Join(", ", columns)}) VALUES (@Username, @Password, @PostalCode);";
+            string query = $"INSERT INTO [User] ({string.Join(", ", columns)}) VALUES (@Username, @Password, @PostalCode); Select SCOPE_IDENTITY();";
             SqlCommand command = new SqlCommand(query, Connection);
 
             command.Parameters.AddWithValue("@Username", user.Username);
             command.Parameters.AddWithValue("@Password", user.Password);
             command.Parameters.AddWithValue("@PostalCode", user.PostalCode);
-            command.ExecuteNonQuery();
+
+            user.Id = Convert.ToInt32(command.ExecuteScalar());
+            //user.Id = GetScopeIdentity("User");
 
             CloseConnection();
         }
