@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
 using CarAuction.Models;
 using Microsoft.Data.SqlClient;
 
@@ -78,6 +79,38 @@ namespace CarAuction.ConnectionHandlers
             string query = $"SELECT * FROM {table};";
             SqlCommand command = new SqlCommand(query, Connection);
             return command.ExecuteReader();
+        }
+        public static ObservableCollection<Vehicle> RetrieveData(string table)
+        {
+            ObservableCollection<Vehicle> result = new ObservableCollection<Vehicle>();
+
+            try
+            {
+                OpenConnection();
+                using (SqlDataReader reader = SelectAll(table))
+                {
+                    while (reader.Read())
+                    {
+                        Vehicle vehicle = new Vehicle
+                        {
+                            // "Name", "Km", "Regnr", "Year", "TowingHook", "DriverLicenseType", "EngineSize", "KmPerLiter", "FuelType", "EnergyClass"
+                            Name = reader.GetString(reader.GetOrdinal("Name")),
+                            Km = reader.GetDouble(reader.GetOrdinal("Km")),
+                            Regnr = reader.GetString(reader.GetOrdinal("Regnr")),
+                            Year = reader.GetInt32(reader.GetOrdinal("Year")),
+                            TowingHook = reader.GetBoolean(reader.GetOrdinal("TowingHook")),
+                            DriversLicenseType = reader.GetString(reader.GetOrdinal("DriverLicenseType")),
+                        };
+                        result.Add(vehicle);
+                    }
+                }
+            }
+            finally
+            {
+                CloseConnection();
+            }
+
+            return result;
         }
 
         public static void UserConnection(string username, string password)
