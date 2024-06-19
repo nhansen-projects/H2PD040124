@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CarAuction.ViewModels
 {
-    internal class MyProfileViewModel : ViewModelBase
+    public class MyProfileViewModel : ViewModelBase
     {
         private MainWindowViewModel main;
         private LoginViewModel login;

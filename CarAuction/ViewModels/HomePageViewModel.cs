@@ -23,7 +23,7 @@ namespace CarAuction.ViewModels
 
         }
 
-
+         
         public void LoginView()
         {
             main.SetViewModel(new LoginViewModel(main));

@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using CarAuction.ConnectionHandlers;
 using CarAuction.Models;
 using JetBrains.Annotations;
 using Microsoft.CodeAnalysis;
@@ -28,7 +27,7 @@ namespace CarAuction.ViewModels
         public SetForSaleViewModel()
         {
 
-        }
+        } 
 
         private string _saleName;
         public string SaleName

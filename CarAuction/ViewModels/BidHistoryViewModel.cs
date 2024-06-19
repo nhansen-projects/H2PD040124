@@ -16,7 +16,7 @@ namespace CarAuction.ViewModels
             this.main = main;
             this.user = user;
         }
-
+         
         public BidHistoryViewModel()
         {
 

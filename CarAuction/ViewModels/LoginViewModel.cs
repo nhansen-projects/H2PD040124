@@ -58,7 +58,7 @@ namespace CarAuction.ViewModels
             set
             {
                 this.RaiseAndSetIfChanged(ref _PasswordInput, value, nameof(PasswordInput));
-            }
+            } 
         }
 
         MyProfileViewModel user = new();
