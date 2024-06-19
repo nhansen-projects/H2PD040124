@@ -20,7 +20,7 @@ namespace CarAuction.ViewModels
         private Vehicle vehicle;
         private Auction auction;
         private User user;
-        
+
         public SetForSaleViewModel(MainWindowViewModel main, MyProfileViewModel userProfileView, Vehicle vehicle, Auction auction, User user)
         {
             this.main = main;
@@ -274,10 +274,11 @@ namespace CarAuction.ViewModels
             //TypeOfVehicle();
             //ConvertToYear();
             //List<string> CreateSaleList = new List<string> { SaleName, SaleMilage, SaleRegnr, ConYear, SaleStarting, CloseAuction, vehicleType, SaleHeight, SaleLength, SaleWeight, SaleEngineSize, TowBar };
-            
+
             main.Queries.InsertVehicle(vehicle);
             auction.VehicleId = vehicle.Id;
             auction.SellerId = user.Id;
+            auction.BuyerId = user.Id;
             main.Queries.InsertDataAuction(auction);
             main.SetViewModel(new HomePageViewModel(main, userProfileView, user));
         }

@@ -1,5 +1,5 @@
 ﻿using System.Collections.ObjectModel;
-﻿using System;
+using System;
 using System.Linq;
 using CarAuction.Models;
 using Microsoft.Data.SqlClient;
@@ -161,26 +161,25 @@ namespace CarAuction.ConnectionHandlers
 
             CloseConnection();
         }
-        public static bool Login(string username, string password)
+        public static bool Login(User user)
         {
             OpenConnection();
-            string query = $"SELECT * FROM [User] WHERE Username = @Username AND Password = @Password;";
+            string query = $"SELECT ID FROM [User] WHERE Username = @Username AND Password = @Password;";
             SqlCommand command = new SqlCommand(query, Connection);
 
-            command.Parameters.AddWithValue("@Username", username);
-            command.Parameters.AddWithValue("@Password", password);
+            command.Parameters.AddWithValue("@Username", user.Username);
+            command.Parameters.AddWithValue("@Password", user.Password);
 
-            SqlDataReader reader = command.ExecuteReader();
-            bool result = reader.HasRows;
+            user.Id = Convert.ToInt32(command.ExecuteScalar());
             CloseConnection();
-            return result;
+            return user.Id > 0;
         }
         public static void NewAuction(Auction auction)
         {
             Connection.Open();
             string[] columns = new string[] { "VehicleID", "SellerUserID", "BuyerUserID", "MinimumPrice" };
 
-            string query = $"INSERT INTO [Vehicle] ({string.Join(", ", columns)}) VALUES (@Username, @Password, @PostalCode); Select SCOPE_IDENTITY();";
+            string query = $"INSERT INTO [Auction] ({string.Join(", ", columns)}) VALUES (@VehicleID, @SellerUserID, @BuyerUserID, @MinimumPrice); Select SCOPE_IDENTITY();";
             SqlCommand command = new SqlCommand(query, Connection);
             command.Parameters.AddWithValue("@VehicleID", auction.VehicleId);
             command.Parameters.AddWithValue("@SellerUserID", auction.SellerId);
@@ -188,6 +187,7 @@ namespace CarAuction.ConnectionHandlers
             command.Parameters.AddWithValue("@MinimumPrice", auction.MinimumPrice);
             auction.AuctionId = Convert.ToInt32(command.ExecuteScalar());
             Connection.Close();
+            //User id is not set when logging in
         }
     }
 
