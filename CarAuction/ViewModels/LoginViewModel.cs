@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CarAuction.Models;
 using ReactiveUI;
 
 namespace CarAuction.ViewModels
@@ -9,7 +10,6 @@ namespace CarAuction.ViewModels
     public class LoginViewModel : ViewModelBase
     {
         private MainWindowViewModel main;
-        private LoginViewModel login;
         public LoginViewModel(MainWindowViewModel main)
         {
             this.main = main;
@@ -58,9 +58,10 @@ namespace CarAuction.ViewModels
             set
             {
                 this.RaiseAndSetIfChanged(ref _PasswordInput, value, nameof(PasswordInput));
-            }
+            } 
         }
 
+        MyProfileViewModel user = new();
         public void Handlers()
         {
             //Check om det findes
@@ -69,24 +70,14 @@ namespace CarAuction.ViewModels
 
             if (UserNameInput == DummyUSERNAME && PasswordInput == DummyPASSWORD)
             {
-                main.SetViewModel(new HomePageViewModel(main, login));
+                main.SetViewModel(new HomePageViewModel(main, user));
             }
             else
             {
                 Error = "Invalid Username Or Password";
                 //Slettes når databasen er koblet til
-                main.SetViewModel(new HomePageViewModel(main, login));
+                main.SetViewModel(new HomePageViewModel(main, user));
             }
-                
-
-            
-      
-
         }
-
-
-
-
-
     }
 }

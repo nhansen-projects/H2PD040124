@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace CarAuction.ViewModels
 {
-    internal class SellerOfAuctionViewModel : ViewModelBase
+    public class SellerOfAuctionViewModel : ViewModelBase
     {
         private MainWindowViewModel main;
-        private LoginViewModel login;
-        public SellerOfAuctionViewModel(MainWindowViewModel main, LoginViewModel login)
+        private MyProfileViewModel user;
+        public SellerOfAuctionViewModel(MainWindowViewModel main, MyProfileViewModel user)
         {
             this.main = main;
-            this.login = login;
+            this.user = user;
         }
 
         public SellerOfAuctionViewModel()
@@ -47,7 +47,7 @@ namespace CarAuction.ViewModels
 
         public void BackBtn()
         {
-            main.SetViewModel(new HomePageViewModel(main, login));
+            main.SetViewModel(new HomePageViewModel(main, user));
         }
 
 

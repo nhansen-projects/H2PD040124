@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace CarAuction.ViewModels
 {
-    internal class MyProfileViewModel : ViewModelBase
+    public class MyProfileViewModel : ViewModelBase
     {
         private MainWindowViewModel main;
-        private LoginViewModel login;
-        public MyProfileViewModel(MainWindowViewModel main, LoginViewModel login)
+        private MyProfileViewModel user;
+        public MyProfileViewModel(MainWindowViewModel main, MyProfileViewModel user)
         {
             this.main = main;
-            this.login = login;
+            this.user = user;
         }
 
         public MyProfileViewModel()
@@ -32,10 +32,16 @@ namespace CarAuction.ViewModels
             }
         }
 
-        public void ChangePasswordBtn()
+        private string _password;
+        public string Password
         {
-            //Noget der kan lave et pop up vindue der kan ændre adganskoden
+            get => _password;
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _password, value, nameof(Password));
+            }
         }
+
 
         //Høre til ChangePassword
         private string _newPassword;
@@ -58,6 +64,21 @@ namespace CarAuction.ViewModels
             }
         }
 
+        private string _newBalance;
+        public string NewBalance
+        {
+            get => _newBalance;
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _newBalance, value, nameof(NewBalance));
+            }
+        }
+
+
+        public void ChangeBalanceBtn()
+        {
+
+        }
         private string _myAuctions;
         public string MyAuctions
         {
@@ -78,9 +99,16 @@ namespace CarAuction.ViewModels
             }
         }
 
+        public void ChangePasswordBtn()
+        {
+            //Noget der kan lave et pop up vindue der kan ændre adganskoden
+        }
+
+
+
         public void BackBtn()
         {
-            main.SetViewModel(new HomePageViewModel(main, login));
+            main.SetViewModel(new HomePageViewModel(main, user));
         }
     }
 }
